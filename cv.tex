@@ -43,16 +43,18 @@
 \begin{minipage}[t]{\textwidth} 
     \centering
     \ifx\personalEmail\empty\else
-    Personal: \personalEmail
-    \fi
+        Personal: \personalEmail%
+    \fi%
     \ifx\personalSchoolEmail\empty\else
-    \ifx\personalEmail\empty\else\\\fi
-    School: \personalSchoolEmail
-    \fi
+        \ifx\personalEmail\empty\else\\\fi
+        School: \personalSchoolEmail%
+    \fi%
     \ifx\personalWebsite\empty\else
-    \ifx\personalEmail\empty\else\\\fi
-    \ifx\personalSchoolEmail\empty\else\\\fi
-    Website: \href{https://\personalWebsite}{\personalWebsite}
+        \ifx\personalEmail\empty
+            \ifx\personalSchoolEmail\empty\else\\\fi
+        \else\\%
+        \fi
+        Website: \href{https://\personalWebsite}{\personalWebsite}%
     \fi
 \end{minipage}
 
@@ -101,7 +103,7 @@
 	\item Designed and deployed facility's first multi-camera live streaming system with ATEM production switchers and custom graphics pipeline
 	\item Developed real-time graphics integration system connecting race timing data to broadcast overlays
 	\item Operated replay and instant highlight system for live broadcast to FloRacing and NBC Sports networks
-	\item Managed live production during race events, coordinating camera operators, replay, and graphics control\\
+	\item Managed live production during race events, coordinating camera operators, replay, and graphics control
 \end{itemize}
 
 
@@ -138,7 +140,7 @@
 
 \textbf{Physics Teaching Assistant} \hfill \textbf{Aug 2023 - May 2024}
 \begin{itemize}[noitemsep,topsep=2pt]
-	\item Assisted students during laboratory sections with introductory and exploratory physics lab experiments, working with industry-standard data collection and analysis tools\\
+	\item Assisted students during laboratory sections with introductory and exploratory physics lab experiments, working with industry-standard data collection and analysis tools
 \end{itemize}
 
 \textscbf{Miller Place School District} \hfill \textscbf{Miller Place, NY}

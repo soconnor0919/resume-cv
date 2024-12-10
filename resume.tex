@@ -49,23 +49,27 @@
 \end{minipage}%
 \begin{minipage}[t]{0.33\textwidth} 
     \centering
-    \ifx\personalEmail\empty\else
-    \personalEmail
-    \fi
+    \ifx\personalEmail\empty\else\personalEmail\fi%
     \ifx\personalSchoolEmail\empty\else
-    \ifx\personalEmail\empty\else\\\fi
-    \personalSchoolEmail
-    \fi
+        \ifx\personalEmail\empty\else\\\fi
+        \personalSchoolEmail%
+    \fi%
     \ifx\personalPhone\empty\else
-    \ifx\personalEmail\empty\else\\\fi
-    \ifx\personalSchoolEmail\empty\else\\\fi
-    \personalPhone
-    \fi
+        \ifx\personalEmail\empty
+            \ifx\personalSchoolEmail\empty\else\\\fi
+        \else\\%
+        \fi
+        \personalPhone%
+    \fi%
     \ifx\personalWebsite\empty\else
-    \ifx\personalEmail\empty\else\\\fi
-    \ifx\personalSchoolEmail\empty\else\\\fi
-    \ifx\personalPhone\empty\else\\\fi
-    \href{https://\personalWebsite}{\personalWebsite}
+        \ifx\personalEmail\empty
+            \ifx\personalSchoolEmail\empty
+                \ifx\personalPhone\empty\else\\\fi
+            \else\\%
+            \fi
+        \else\\%
+        \fi
+        \href{https://\personalWebsite}{\personalWebsite}%
     \fi
 \end{minipage}%
 \begin{minipage}[t]{0.33\textwidth}
