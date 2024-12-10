@@ -60,6 +60,11 @@ jobs:
           cv.tex
         latexmk_use_xelatex: false
         
+    - name: Move PDFs to root
+      run: |
+        cp /home/runner/work/resume-cv/resume-cv/resume.pdf ./resume.pdf
+        cp /home/runner/work/resume-cv/resume-cv/cv.pdf ./cv.pdf
+    
     - name: Delete existing tag
       continue-on-error: true
       env:
