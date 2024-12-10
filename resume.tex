@@ -39,32 +39,39 @@
     {\large \textscbf{\personalName}}
 \end{center}
 
+\vspace{0.5em}
+
 \noindent
 \begin{minipage}[t]{0.33\textwidth}
     \raggedright
-    Bucknell University
-    \ifx\personalSchoolAddress\empty\else
-    \\\personalSchoolAddress
+    \ifx\personalSchoolAddressLineOne\empty\else
+        \personalSchoolAddressLineOne\\%
+        \personalSchoolAddressLineTwo\\%
+        \personalSchoolAddressLineThree%
     \fi
 \end{minipage}%
+\hfill%
 \begin{minipage}[t]{0.33\textwidth} 
     \centering
-    \mbox{\personalEmail}%
+    \href{mailto:\personalEmail}{\personalEmail}%
     \ifx\personalSchoolEmail\empty\else
-        \\\mbox{\personalSchoolEmail}%
+        \\\href{mailto:\personalSchoolEmail}{\personalSchoolEmail}%
     \fi
     \ifx\personalPhone\empty\else
-        \\\mbox{\personalPhone}%
+        \\\personalPhone%
     \fi
     \\\href{https://\personalWebsite}{\personalWebsite}%
 \end{minipage}%
+\hfill%
 \begin{minipage}[t]{0.33\textwidth}
     \raggedleft
-    \ifx\personalHomeAddress\empty\else
-    Home Address\\
-    \personalHomeAddress
+    \ifx\personalHomeAddressLineOne\empty\else
+        \personalHomeAddressLineOne\\%
+        \personalHomeAddressLineTwo%
     \fi
 \end{minipage}
+
+\vspace{1em}
 
 \resumesection{Education}
 

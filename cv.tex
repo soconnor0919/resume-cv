@@ -39,14 +39,36 @@
     {\large \textscbf{\personalName}}
 \end{center}
 
+\vspace{0.5em}
+
 \noindent
-\begin{minipage}[t]{\textwidth} 
-    \centering
-    \mbox{Personal: \personalEmail}%
-    \ifx\personalSchoolEmail\empty\else
-        \\\mbox{School: \personalSchoolEmail}%
+\begin{minipage}[t]{0.33\textwidth}
+    \raggedright
+    \ifx\personalSchoolAddressLineOne\empty\else
+        \personalSchoolAddressLineOne\\%
+        \personalSchoolAddressLineTwo\\%
+        \personalSchoolAddressLineThree%
     \fi
-    \\\mbox{Website: \href{https://\personalWebsite}{\personalWebsite}}%
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.33\textwidth} 
+    \centering
+    \href{mailto:\personalEmail}{\personalEmail}%
+    \ifx\personalSchoolEmail\empty\else
+        \\\href{mailto:\personalSchoolEmail}{\personalSchoolEmail}%
+    \fi
+    \ifx\personalPhone\empty\else
+        \\\personalPhone%
+    \fi
+    \\\href{https://\personalWebsite}{\personalWebsite}%
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.33\textwidth}
+    \raggedleft
+    \ifx\personalHomeAddressLineOne\empty\else
+        \personalHomeAddressLineOne\\%
+        \personalHomeAddressLineTwo%
+    \fi
 \end{minipage}
 
 \vspace{1em}
@@ -54,11 +76,10 @@
 % Professional Summary Section
 \noindent
 \begin{minipage}{\textwidth}
-    Computer Science and Engineering student with extensive experience in software development, robotics research, and technical leadership. 
+    \textbf{Professional Summary:} Computer Science and Engineering student with extensive experience in software development, robotics research, and technical leadership. 
     Demonstrated track record of building scalable solutions and leading cross-functional teams. 
     Published researcher in human-robot interaction with experience in both academic and commercial software development.
 \end{minipage}
-%\vspace{1em}
 
 \resumesection{Education}
 
