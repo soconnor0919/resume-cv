@@ -40,16 +40,16 @@ if [ -n "$PERSONAL_PHONE" ] || [ -n "$PERSONAL_HOME_ADDRESS_LINE1" ] || [ -n "$P
     echo "Building private version..."
     cat > personal_info.tex << EOL
 % Private version of personal information
-\\newcommand{\\personalName}{${PERSONAL_NAME}}
-\\newcommand{\\personalEmail}{${PERSONAL_EMAIL}}
-\\newcommand{\\personalPhone}{${PERSONAL_PHONE}}
-\\newcommand{\\personalWebsite}{${PERSONAL_WEBSITE}}
-\\newcommand{\\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
-\\newcommand{\\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
-\\newcommand{\\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
-\\newcommand{\\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
-\\newcommand{\\personalSchoolAddressLineTwo}{${PERSONAL_SCHOOL_ADDRESS_LINE2}}
-\\newcommand{\\personalSchoolAddressLineThree}{${PERSONAL_SCHOOL_ADDRESS_LINE3}}
+\newcommand{\personalName}{$PERSONAL_NAME}
+\newcommand{\personalEmail}{$PERSONAL_EMAIL}
+\newcommand{\personalPhone}{$PERSONAL_PHONE}
+\newcommand{\personalWebsite}{$PERSONAL_WEBSITE}
+\newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL}
+\newcommand{\personalHomeAddressLineOne}{$PERSONAL_HOME_ADDRESS_LINE1}
+\newcommand{\personalHomeAddressLineTwo}{$PERSONAL_HOME_ADDRESS_LINE2}
+\newcommand{\personalSchoolAddressLineOne}{$PERSONAL_SCHOOL_ADDRESS_LINE1}
+\newcommand{\personalSchoolAddressLineTwo}{$PERSONAL_SCHOOL_ADDRESS_LINE2}
+\newcommand{\personalSchoolAddressLineThree}{$PERSONAL_SCHOOL_ADDRESS_LINE3}
 EOL
 
     docker build --platform linux/arm64 -t resume-builder .
@@ -66,16 +66,16 @@ fi
 echo "Building public version..."
 cat > personal_info.tex << EOL
 % Public version of personal information
-\\newcommand{\\personalName}{${PERSONAL_NAME}}
-\\newcommand{\\personalEmail}{${PERSONAL_EMAIL}}
-\\newcommand{\\personalPhone}{}
-\\newcommand{\\personalWebsite}{${PERSONAL_WEBSITE}}
-\\newcommand{\\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
-\\newcommand{\\personalHomeAddressLineOne}{}
-\\newcommand{\\personalHomeAddressLineTwo}{}
-\\newcommand{\\personalSchoolAddressLineOne}{}
-\\newcommand{\\personalSchoolAddressLineTwo}{}
-\\newcommand{\\personalSchoolAddressLineThree}{}
+\newcommand{\personalName}{$PERSONAL_NAME}
+\newcommand{\personalEmail}{$PERSONAL_EMAIL}
+\newcommand{\personalPhone}{}
+\newcommand{\personalWebsite}{$PERSONAL_WEBSITE}
+\newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL}
+\newcommand{\personalHomeAddressLineOne}{}
+\newcommand{\personalHomeAddressLineTwo}{}
+\newcommand{\personalSchoolAddressLineOne}{}
+\newcommand{\personalSchoolAddressLineTwo}{}
+\newcommand{\personalSchoolAddressLineThree}{}
 EOL
 
 docker run --platform linux/arm64 --rm \
