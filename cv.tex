@@ -1,0 +1,229 @@
+\documentclass{article}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em} 
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry}
+
+% Define spacing variables
+\newlength{\sectspaceabove}
+\newlength{\sectspacebelow}
+\setlength{\sectspaceabove}{-0em}  % Space before section titles
+\setlength{\sectspacebelow}{-0.5em}  % Space after section titles
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+% Hide page numbers
+\pagestyle{empty}
+
+% Custom macro for small caps and bold
+\newcommand{\textscbf}[1]{\textbf{\textsc{#1}}}
+
+% Custom macro for section headers with controlled spacing
+\newcommand{\resumesection}[1]{%
+    \vspace{\sectspaceabove}%
+    \begin{center}
+        \textscbf{#1}
+    \end{center}%
+    \vspace{\sectspacebelow}%
+}
+
+% Include personal information
+\input{personal_info}
+
+\begin{document}
+\begin{center}
+    {\large \textscbf{\personalName}}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{\textwidth} 
+    \centering
+    Personal: \personalEmail \\
+    School: \personalSchoolEmail \\
+    \href{https://\personalWebsite}{Website: \personalWebsite}
+\end{minipage}
+
+\vspace{1em}
+
+% Professional Summary Section
+\noindent
+\begin{minipage}{\textwidth}
+    Computer Science and Engineering student with extensive experience in software development, robotics research, and technical leadership. 
+    Demonstrated track record of building scalable solutions and leading cross-functional teams. 
+    Published researcher in human-robot interaction with experience in both academic and commercial software development.
+\end{minipage}
+%\vspace{1em}
+
+\resumesection{Education}
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Bachelor of Science in Computer Science and Engineering} \hfill \textbf{Expected Graduation: May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Cumulative Engineering GPA: 3.90. Dean's List: Fall 2022, Fall 2023, Spring 2024
+\end{itemize}
+
+\resumesection{Experience}
+
+\textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
+
+\textbf{Software Developer} \hfill \textbf{Oct 2020 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Engineered a digital registration platform that modernized paper-based processes, integrating payment processing and real-time number availability checking, eliminating manual processing delays
+	\item Built and deployed a high-performance race statistics platform serving 1500+ concurrent users, providing real-time access to driver positions, rankings, and lineups, replacing physical bulletin boards
+	\item Developed an intuitive content management system tailored for non-technical staff, enabling content management through familiar interfaces while maintaining website consistency
+	\item Orchestrated migration to containerized architecture using Docker and implemented automated backup systems to improve reliability
+\end{itemize}
+
+\textbf{IT Administrator} \hfill \textbf{Oct 2020 - Apr 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Engineered migration from consumer desktop computers to enterprise thin clients with virtualization servers, improving reliability and remote access capabilities enabling continued support while away at university
+	\item Implemented automated backup solutions using the Backblaze platform with version control and disaster recovery procedures
+	\item Deployed Windows Server with Active Directory for centralized user management and file storage
+	\item Established standardized workstation images and software deployment protocols across facilities
+\end{itemize}
+
+\textbf{Media Producer} \hfill \textbf{Oct 2020 - Apr 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Designed and deployed facility's first multi-camera live streaming system with ATEM production switchers and custom graphics pipeline
+	\item Developed real-time graphics integration system connecting race timing data to broadcast overlays
+	\item Operated replay and instant highlight system for live broadcast to FloRacing and NBC Sports networks
+	\item Managed live production during race events, coordinating camera operators, replay, and graphics control\\
+\end{itemize}
+
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Computer Science Researcher - Human-Robot Interaction} \hfill \textbf{Jan 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Engineered a modular web-based experimental platform for human-robot interaction studies using the Wizard of Oz experimental paradigm and ROS2 and C++/Python
+    \item Published and presented a first-author paper and poster at the 33rd IEEE International Conference on Robot and Human Interactive Communication
+\end{itemize}
+
+\textbf{Computer Science Research Assistant - Chemical Engineering Department} \hfill \textbf{Aug 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Designed and implemented an automated data collection system using a microcontroller and C++ to collect real-time temperature, pressure, and humidity data in harsh environments
+    \item Currently integrating robotic arm into existing coffee research project to automate repeated brewing-related tasks and data collection, freeing up researchers from unskilled repetitive work
+\end{itemize}
+
+\textbf{Computer Science Teaching Assistant} \hfill \textbf{Jan 2024 - Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Led lecture and lab sections focusing on agile development practices and following scrum guidelines for group work in the field of computer science.
+	\item Assisted students with classwork, homework, and lab assignments, focusing on teaching students how to find the answers to their questions using existing documentation
+\end{itemize}
+
+\textbf{Engineering Study Spot Tutor - Computer Science} \hfill \textbf{Aug 2024 - Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Held drop-in help sessions for computer science students throughout all stages of the curriculum, assisting with introductory courses, software engineering, and systems programming assignments
+\end{itemize}
+
+\textbf{Engineering Teaching Assistant} \hfill \textbf{Aug 2023 - Dec 2023}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Led recurring workshops on Arduino-based microcontroller programming, assembly, and wiring for multidisciplinary student engineering projects
+	\item Assisted students during class and lab sections on their design session projects, with emphasis on engineering ethics education
+\end{itemize}
+
+\textbf{Physics Teaching Assistant} \hfill \textbf{Aug 2023 - May 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Assisted students during laboratory sections with introductory and exploratory physics lab experiments, working with industry-standard data collection and analysis tools\\
+\end{itemize}
+
+\textscbf{Miller Place School District} \hfill \textscbf{Miller Place, NY}
+
+\textbf{Information Technology Intern} \hfill \textbf{Sep 2020 - May 2022}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Worked under senior technical staff to assist faculty, staff and students with district-owned printers and computers
+	\item Assisted staff in one-laptop per person deployment and support in response to the COVID-19 pandemic, teaching students how to fully utilize newly-available remote learning tools and programs
+\end{itemize}
+
+
+\resumesection{Activities}
+
+\textscbf{AIChE Chem-E-Car Competition Team} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{President, Electrical and Mechanical Team Lead} \hfill \textbf{Jan 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Pioneered team's first custom hardware solution: designed and fabricated a microcontroller-based control system with isolated power circuits for hydrogen fuel cell regulation
+    \item Implemented finite state machine architecture integrating spectrometer readings, relay control, and LED feedback for real-time reaction monitoring in isolated chamber conditions
+\end{itemize}
+
+\textscbf{Bucknell Coffee Society} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Treasurer} \hfill \textbf{Oct 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Co-established and launched a new campus organization, managing financial operations and coordinating event logistics.
+    \item Presented on ongoing research for publication by Bucknell's student story, engineering report, and fall magazine
+\end{itemize}
+
+\textscbf{RoboLab@Bucknell} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Founding Member} \hfill \textbf{Sep 2023 - Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Led and participated in group discussions in a new lab bridging computer science and psychology perspectives on human-robot interaction, working with the complexities of human-robot trust, job replacement, and autonomy
+\end{itemize}
+
+\resumesection{Conferences and Competitions}
+
+\textscbf{IEEE International Conference on Robot and Human Interactive Communication} \hfill \textscbf{Aug 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Presented a first-author paper in a poster session regarding my project HRIStudio, a novel tool enabling human-robot interaction experiments to be conducted by those unfamiliar with robotic platforms and programming
+\end{itemize}
+
+\textbf{AIChE Annual Student Conference}  \hfill \textscbf{Oct 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Competed in the 2024 National AIChE Chem-E-Car Performance Competition with Bucknell's car, H\textsubscript{2}Go
+    \item Presented the design of our car in a poster session, heavily focusing on the safety-related aspects of our design
+\end{itemize}
+
+\textbf{AIChE Mid-Atlantic Regional Conference}  \hfill \textscbf{Apr 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Placed second overall in the 2024 Mid-Atlantic AIChE Chem-E-Car Performance Competition with our car, H\textsubscript{2}Go
+    \item Presented the design of our car in a poster session, heavily focusing on the safety-related aspects of our design
+\end{itemize}
+
+\textbf{Specialty Coffee Exposition}  \hfill \textscbf{Mar 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Attended as a representative of the Bucknell Coffee Society, meeting with vendors and equipment manufacturers to request sponsorship, donations, and educational materials for our club
+\end{itemize}
+
+\textbf{AIChE Annual Student Conference}  \hfill \textscbf{Oct 2023}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Attended as a representative of Bucknell's Chem-E-Car team, discussing designs and reactions with other teams to kickstart development of the next year's car
+\end{itemize}
+
+\textbf{AIChE Mid-Atlantic Regional Conference}  \hfill \textscbf{Apr 2023}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Competed in the 2023 Mid-Atlantic AIChE Chem-E-Car Performance Competition with our car, H\textsubscript{2}Go
+    \item Presented the design of our car in a poster session, heavily focusing on the safety-related aspects of our design
+\end{itemize}
+
+
+\resumesection{Publications}
+
+\nocite{*}
+\bibliography{subfiles/refs.bib}
+\bibliographystyle{plain}
+
+\resumesection{Relevant Coursework}
+
+\textbf{Systems \& Architecture:} Computer Systems, Operating Systems Design, Computer Networks \& Security
+
+\textbf{Software Development:} Software Engineering, Data Structures \& Algorithms, Research Methods, Ethics in Computing
+
+\textbf{Mathematics:} Calculus II, Linear Algebra, Discrete Mathematics, Statistics, Applied Statistics with R, Data Mining
+
+\resumesection{Skills \& Interests}
+
+\textbf{Languages \& Frameworks:} Java, C/C++, Python, JavaScript/TypeScript, React, Next.js, PHP, SQL
+
+\textbf{Backend \& DevOps:} REST APIs, MySQL, PostgreSQL, Docker, Apache Web Server, NGINX, ROS2
+
+\textbf{Cloud \& Infrastructure:} AWS, GCP, Azure, Backblaze, Linux (RHEL/Debian), CI/CD
+
+\textbf{Development Tools:} Git, JetBrains Suite, VS Code, Cursor, Linux CLI
+
+\end{document}

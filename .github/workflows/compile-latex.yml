@@ -1,0 +1,95 @@
+name: Compile LaTeX Documents
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-public:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up TeX Live
+      uses: xu-cheng/texlive-action/full@v1
+      with:
+        run: |
+          apk add make
+          
+    - name: Create public info file
+      run: |
+        cat > personal_info.tex << EOL
+        % Public version of personal information
+        \newcommand{\personalName}{Sean O'Connor}
+        \newcommand{\personalEmail}{Available upon request}
+        \newcommand{\personalPhone}{Available upon request}
+        \newcommand{\personalWebsite}{soconnor.dev}
+        \newcommand{\personalSchoolEmail}{Available upon request}
+        \newcommand{\personalHomeAddress}{Available upon request}
+        \newcommand{\personalSchoolAddress}{Available upon request}
+        EOL
+        
+    - name: Compile Public Documents
+      run: |
+        pdflatex -interaction=nonstopmode resume.tex
+        pdflatex -interaction=nonstopmode cv.tex
+        bibtex cv
+        pdflatex -interaction=nonstopmode cv.tex
+        pdflatex -interaction=nonstopmode cv.tex
+        
+    - name: Upload Public PDFs
+      uses: actions/upload-artifact@v3
+      with:
+        name: public-documents
+        path: |
+          resume.pdf
+          cv.pdf
+
+  build-private:
+    runs-on: ubuntu-latest
+    if: github.actor == github.repository_owner
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up TeX Live
+      uses: xu-cheng/texlive-action/full@v1
+      with:
+        run: |
+          apk add make
+          
+    - name: Create private info file
+      env:
+        PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL }}
+        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE }}
+        PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL }}
+        PERSONAL_HOME_ADDRESS: ${{ secrets.PERSONAL_HOME_ADDRESS }}
+        PERSONAL_SCHOOL_ADDRESS: ${{ secrets.PERSONAL_SCHOOL_ADDRESS }}
+      run: |
+        cat > personal_info.tex << EOL
+        % Private version of personal information
+        \newcommand{\personalName}{Sean O'Connor}
+        \newcommand{\personalEmail}{$PERSONAL_EMAIL}
+        \newcommand{\personalPhone}{$PERSONAL_PHONE}
+        \newcommand{\personalWebsite}{soconnor.dev}
+        \newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL}
+        \newcommand{\personalHomeAddress}{$PERSONAL_HOME_ADDRESS}
+        \newcommand{\personalSchoolAddress}{$PERSONAL_SCHOOL_ADDRESS}
+        EOL
+        
+    - name: Compile Private Documents
+      run: |
+        pdflatex -interaction=nonstopmode resume.tex
+        pdflatex -interaction=nonstopmode cv.tex
+        bibtex cv
+        pdflatex -interaction=nonstopmode cv.tex
+        pdflatex -interaction=nonstopmode cv.tex
+        
+    - name: Upload Private PDFs
+      uses: actions/upload-artifact@v3
+      with:
+        name: private-documents
+        path: |
+          resume.pdf
+          cv.pdf 

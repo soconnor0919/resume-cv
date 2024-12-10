@@ -1,0 +1,33 @@
+# LaTeX build files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.pdf
+*.dvi
+*.xdv
+*-converted-to.*
+.pdf
+*.bbl
+*.blg
+*.synctex.gz
+
+# Private information
+personal_info_private.tex
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor files
+.vscode/
+.idea/

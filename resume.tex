@@ -1,0 +1,167 @@
+\documentclass{article}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em} 
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry}
+
+% Define spacing variables
+\newlength{\sectspaceabove}
+\newlength{\sectspacebelow}
+\setlength{\sectspaceabove}{-0.5em}  % Space before section titles
+\setlength{\sectspacebelow}{-0.5em}  % Space after section titles
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+% Hide page numbers
+\pagestyle{empty}
+
+% Custom macro for small caps and bold
+\newcommand{\textscbf}[1]{\textbf{\textsc{#1}}}
+
+% Custom macro for section headers with controlled spacing
+\newcommand{\resumesection}[1]{%
+    \vspace{\sectspaceabove}%
+    \begin{center}
+        \textscbf{#1}
+    \end{center}%
+    \vspace{\sectspacebelow}%
+}
+
+% Include personal information
+\input{personal_info}
+
+\begin{document}
+\begin{center}
+    {\large \textscbf{\personalName}}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{0.33\textwidth}
+    \raggedright
+    Bucknell University \\
+    \personalSchoolAddress
+\end{minipage}%
+\begin{minipage}[t]{0.33\textwidth} 
+    \centering
+    \personalEmail \\
+    \personalSchoolEmail \\
+    \personalPhone \\
+    \href{https://\personalWebsite}{\personalWebsite}
+\end{minipage}%
+\begin{minipage}[t]{0.33\textwidth}
+    \raggedleft
+    Home Address \\
+    \personalHomeAddress
+\end{minipage}
+
+\resumesection{Education}
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Bachelor of Science in Computer Science and Engineering} \hfill \textbf{Expected Graduation: May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Cumulative Engineering GPA: 3.90. Dean's List: Fall 2022, Fall 2023, Spring 2024
+\end{itemize}
+
+\resumesection{Experience}
+
+\textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
+
+\textbf{Software Developer} \hfill \textbf{Oct 2020 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+\item Engineered a digital registration platform that modernized paper-based processes, integrating payment processing and real-time number availability checking, eliminating manual processing delays
+\item Built and deployed a high-performance race statistics platform serving 1500+ concurrent users, providing real-time access to driver positions, rankings, and lineups, replacing physical bulletin boards
+\item Developed an intuitive content management system tailored for non-technical staff, enabling content management through familiar interfaces while maintaining website consistency
+\item Orchestrated migration to containerized architecture using Docker and implemented automated backup systems to improve reliability
+\end{itemize}
+
+%\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+%
+%\textbf{Computer Science Researcher - Human-Robot Interaction} \hfill \textbf{Jan 2023 – Present}
+%\begin{itemize}[noitemsep,topsep=2pt]
+%    \item Co-founded an interdisciplinary research lab and meeting group, engaging peers in the world of human-robot interaction 
+%    \item Led ongoing development of a platform for Human-Robot Interaction experiments, resulting in a first-author publication
+%\end{itemize}
+%
+%\textbf{Teaching Assistant and Tutor - Computer Science, Engineering, and Physics} \hfill \textbf{Aug 2023 - Present}
+%\begin{itemize}[noitemsep,topsep=2pt]
+%\item Mentored diverse student groups in Java programming, Arduino development, and physics lab experiments, adapting teaching methods to various learning styles
+%\item Guided engineering teams through agile development cycles while emphasizing ethical design considerations and proper documentation
+%\item Supported data analysis across disciplines using Excel, Logger Pro, and custom software tools
+%\item Fostered inclusive learning environments through hands-on workshops and one-on-one tutoring sessions
+%\end{itemize}
+%
+%\textbf{Computer Science Research Assistant - Chemical Engineering Department} \hfill \textbf{Aug 2023 – Present}
+%\begin{itemize}[noitemsep,topsep=2pt]
+%    \item Developed sensor systems to improve data collection in coffee-related biochemical research, enhancing accuracy and efficiency of experiments using custom software tools to streamline data analysis.
+%\end{itemize}
+%
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Computer Science Researcher - Human-Robot Interaction} \hfill \textbf{Jan 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Engineered a modular web-based experimental platform for human-robot interaction studies using the Wizard of Oz experimental paradigm and ROS2 and C++/Python, resulting in a first-author publication
+    \item Co-founded and led weekly research discussions in a new lab bridging computer science and psychology perspectives on human-robot interaction
+\end{itemize}
+
+\textbf{Computer Science Research Assistant - Chemical Engineering Department} \hfill \textbf{Aug 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Designed and implemented an automated data collection system using a microcontroller and C++ to collect real-time temperature, pressure, and humidity data in harsh environments
+    \item Currently integrating robotic arm into existing coffee research project to automate repeated brewing-related tasks and data collection, freeing up researchers from unskilled repetitive work
+\end{itemize}
+
+\textbf{Teaching Assistant \& Engineering Tutor} \hfill \textbf{Aug 2023 - Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Led lab sessions in computer science (agile development, Java programming), engineering (Arduino, embedded systems), and physics (discovery experiments and data analysis)
+    \item Developed automated testing frameworks to streamline assignment grading and provide detailed personalized feedback
+    \item Provided technical mentorship at the Engineering Study Spot, focusing on programming concepts and system design
+\end{itemize}
+
+
+\resumesection{Activities}
+
+%\textscbf{Bucknell Coffee Society} \hfill \textscbf{Lewisburg, PA}
+%
+%\textbf{Treasurer} \hfill \textbf{Oct 2023 – Present}
+%\begin{itemize}[noitemsep,topsep=2pt]
+%    \item Co-established and launched a new campus organization, managing financial operations and coordinating event logistics.
+%\end{itemize}
+
+\textscbf{AIChE Chem-E-Car Competition Team} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{President, Electrical and Mechanical Team Lead} \hfill \textbf{Jan 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+	\item Pioneered team's first custom hardware solution: designed and fabricated a microcontroller-based control system with isolated power circuits for hydrogen fuel cell regulation
+    \item Implemented finite state machine architecture integrating spectrometer readings, relay control, and LED feedback for real-time reaction monitoring in isolated chamber conditions
+\end{itemize}
+
+\resumesection{Publications}
+
+\nocite{*}
+\bibliography{subfiles/refs.bib}
+\bibliographystyle{plain}
+
+\resumesection{Relevant Coursework}
+
+\textbf{Systems \& Architecture:} Computer Systems, Operating Systems Design, Computer Networks \& Security
+
+\textbf{Software Development:} Software Engineering, Data Structures \& Algorithms, Research Methods, Ethics in Computing
+
+\textbf{Mathematics:} Calculus II, Linear Algebra, Discrete Mathematics, Statistics, Applied Statistics with R, Data Mining
+
+\resumesection{Skills \& Interests}
+
+\textbf{Languages \& Frameworks:} Java, C/C++, Python, JavaScript/TypeScript, React, Next.js, PHP, SQL
+
+\textbf{Backend \& DevOps:} REST APIs, MySQL, PostgreSQL, Docker, Apache Web Server, NGINX, ROS2
+
+\textbf{Cloud \& Infrastructure:} AWS, GCP, Azure, Backblaze, Linux (RHEL/Debian), CI/CD
+
+\textbf{Development Tools:} Git, JetBrains Suite, VS Code, Cursor, Linux CLI
+
+\end{document}
