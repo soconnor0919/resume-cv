@@ -24,21 +24,27 @@ jobs:
         cat > personal_info.tex << EOL
         % Public version of personal information
         \newcommand{\personalName}{Sean O'Connor}
-        \newcommand{\personalEmail}{Available upon request}
-        \newcommand{\personalPhone}{Available upon request}
+        \newcommand{\personalEmail}{Contact for details}
+        \newcommand{\personalPhone}{}
         \newcommand{\personalWebsite}{soconnor.dev}
-        \newcommand{\personalSchoolEmail}{Available upon request}
-        \newcommand{\personalHomeAddress}{Available upon request}
-        \newcommand{\personalSchoolAddress}{Available upon request}
+        \newcommand{\personalSchoolEmail}{}
+        \newcommand{\personalHomeAddress}{}
+        \newcommand{\personalSchoolAddress}{}
         EOL
         
-    - name: Upload Public PDFs
-      uses: actions/upload-artifact@v3
+    - name: Upload Public PDFs as Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: public-documents
-        path: |
+        files: |
           resume.pdf
           cv.pdf
+        name: Latest PDFs
+        tag_name: latest
+        body: |
+          Latest version of resume and CV (public version)
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-private:
     runs-on: ubuntu-latest
@@ -64,12 +70,12 @@ jobs:
         cat > personal_info.tex << EOL
         % Private version of personal information
         \newcommand{\personalName}{Sean O'Connor}
-        \newcommand{\personalEmail}{$PERSONAL_EMAIL}
-        \newcommand{\personalPhone}{$PERSONAL_PHONE}
+        \newcommand{\personalEmail}{${PERSONAL_EMAIL}}
+        \newcommand{\personalPhone}{${PERSONAL_PHONE}}
         \newcommand{\personalWebsite}{soconnor.dev}
-        \newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL}
-        \newcommand{\personalHomeAddress}{$PERSONAL_HOME_ADDRESS}
-        \newcommand{\personalSchoolAddress}{$PERSONAL_SCHOOL_ADDRESS}
+        \newcommand{\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
+        \newcommand{\personalHomeAddress}{${PERSONAL_HOME_ADDRESS}}
+        \newcommand{\personalSchoolAddress}{${PERSONAL_SCHOOL_ADDRESS}}
         EOL
         
     - name: Upload Private PDFs

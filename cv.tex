@@ -42,8 +42,12 @@
 \noindent
 \begin{minipage}[t]{\textwidth} 
     \centering
-    Personal: \personalEmail \\
-    School: \personalSchoolEmail \\
+    \ifx\personalEmail\empty\else
+    Personal: \personalEmail\\
+    \fi
+    \ifx\personalSchoolEmail\empty\else
+    School: \personalSchoolEmail\\
+    \fi
     \href{https://\personalWebsite}{Website: \personalWebsite}
 \end{minipage}
 

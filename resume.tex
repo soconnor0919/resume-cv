@@ -42,20 +42,30 @@
 \noindent
 \begin{minipage}[t]{0.33\textwidth}
     \raggedright
-    Bucknell University \\
-    \personalSchoolAddress
+    Bucknell University
+    \ifx\personalSchoolAddress\empty\else
+    \\\personalSchoolAddress
+    \fi
 \end{minipage}%
 \begin{minipage}[t]{0.33\textwidth} 
     \centering
-    \personalEmail \\
-    \personalSchoolEmail \\
-    \personalPhone \\
+    \ifx\personalEmail\empty\else
+    \personalEmail\\
+    \fi
+    \ifx\personalSchoolEmail\empty\else
+    \personalSchoolEmail\\
+    \fi
+    \ifx\personalPhone\empty\else
+    \personalPhone\\
+    \fi
     \href{https://\personalWebsite}{\personalWebsite}
 \end{minipage}%
 \begin{minipage}[t]{0.33\textwidth}
     \raggedleft
-    Home Address \\
+    \ifx\personalHomeAddress\empty\else
+    Home Address\\
     \personalHomeAddress
+    \fi
 \end{minipage}
 
 \resumesection{Education}
