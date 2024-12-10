@@ -33,20 +33,27 @@ jobs:
         latexmk_use_xelatex: false
         
     - name: Create public info file
+      env:
+        PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
+        PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL || '' }}
+        PERSONAL_WEBSITE: ${{ secrets.PERSONAL_WEBSITE || '' }}
+        PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL || '' }}
       run: |
-        cat > personal_info.tex << EOL
+        cat > personal_info.tex << 'EOL'
         % Public version of personal information
-        \\newcommand{\\personalName}{Sean O'Connor}
-        \\newcommand{\\personalEmail}{sean@soconnor.dev}
+        \\newcommand{\\personalName}{${PERSONAL_NAME}}
+        \\newcommand{\\personalEmail}{${PERSONAL_EMAIL}}
         \\newcommand{\\personalPhone}{}
-        \\newcommand{\\personalWebsite}{soconnor.dev}
-        \\newcommand{\\personalSchoolEmail}{sso005@bucknell.edu}
+        \\newcommand{\\personalWebsite}{${PERSONAL_WEBSITE}}
+        \\newcommand{\\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
         \\newcommand{\\personalHomeAddressLineOne}{}
         \\newcommand{\\personalHomeAddressLineTwo}{}
         \\newcommand{\\personalSchoolAddressLineOne}{}
         \\newcommand{\\personalSchoolAddressLineTwo}{}
         \\newcommand{\\personalSchoolAddressLineThree}{}
         EOL
+        envsubst < personal_info.tex > personal_info.tex.tmp
+        mv personal_info.tex.tmp personal_info.tex
         
     - name: Upload Public PDFs as Release
       uses: softprops/action-gh-release@v1
@@ -86,22 +93,24 @@ jobs:
           
     - name: Create private info file
       env:
-        PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL }}
-        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE }}
-        PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL }}
-        PERSONAL_HOME_ADDRESS_LINE1: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE1 }}
-        PERSONAL_HOME_ADDRESS_LINE2: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE2 }}
-        PERSONAL_SCHOOL_ADDRESS_LINE1: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE1 }}
-        PERSONAL_SCHOOL_ADDRESS_LINE2: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE2 }}
-        PERSONAL_SCHOOL_ADDRESS_LINE3: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE3 }}
+        PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
+        PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL || '' }}
+        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE || '' }}
+        PERSONAL_WEBSITE: ${{ secrets.PERSONAL_WEBSITE || '' }}
+        PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL || '' }}
+        PERSONAL_HOME_ADDRESS_LINE1: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE1 || '' }}
+        PERSONAL_HOME_ADDRESS_LINE2: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE2 || '' }}
+        PERSONAL_SCHOOL_ADDRESS_LINE1: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE1 || '' }}
+        PERSONAL_SCHOOL_ADDRESS_LINE2: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE2 || '' }}
+        PERSONAL_SCHOOL_ADDRESS_LINE3: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE3 || '' }}
       run: |
         cat > personal_info.tex << 'EOL'
         % Private version of personal information
-        \\newcommand{\\personalName}{Sean O'Connor}
-        \\newcommand{\\personalEmail}{sean@soconnor.dev}
+        \\newcommand{\\personalName}{${PERSONAL_NAME}}
+        \\newcommand{\\personalEmail}{${PERSONAL_EMAIL}}
         \\newcommand{\\personalPhone}{${PERSONAL_PHONE}}
-        \\newcommand{\\personalWebsite}{soconnor.dev}
-        \\newcommand{\\personalSchoolEmail}{sso005@bucknell.edu}
+        \\newcommand{\\personalWebsite}{${PERSONAL_WEBSITE}}
+        \\newcommand{\\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
         \\newcommand{\\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
         \\newcommand{\\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
         \\newcommand{\\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
@@ -117,4 +126,4 @@ jobs:
         name: private-documents
         path: |
           resume.pdf
-          cv.pdf 
+          cv.pdf

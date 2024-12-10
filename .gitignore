@@ -26,6 +26,7 @@
 
 # Private information
 personal_info_private.tex
+personal_info.tex
 
 # macOS system files
 .DS_Store
