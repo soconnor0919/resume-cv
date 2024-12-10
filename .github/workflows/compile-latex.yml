@@ -13,11 +13,12 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Set up TeX Live
-      uses: xu-cheng/texlive-action/full@v1
+      uses: xu-cheng/latex-action@v3
       with:
-        run: |
-          apk add make
-          
+        root_file: |
+          resume.tex
+          cv.tex
+        
     - name: Create public info file
       run: |
         cat > personal_info.tex << EOL
@@ -30,14 +31,6 @@ jobs:
         \newcommand{\personalHomeAddress}{Available upon request}
         \newcommand{\personalSchoolAddress}{Available upon request}
         EOL
-        
-    - name: Compile Public Documents
-      run: |
-        pdflatex -interaction=nonstopmode resume.tex
-        pdflatex -interaction=nonstopmode cv.tex
-        bibtex cv
-        pdflatex -interaction=nonstopmode cv.tex
-        pdflatex -interaction=nonstopmode cv.tex
         
     - name: Upload Public PDFs
       uses: actions/upload-artifact@v3
@@ -54,10 +47,11 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Set up TeX Live
-      uses: xu-cheng/texlive-action/full@v1
+      uses: xu-cheng/latex-action@v3
       with:
-        run: |
-          apk add make
+        root_file: |
+          resume.tex
+          cv.tex
           
     - name: Create private info file
       env:
@@ -77,14 +71,6 @@ jobs:
         \newcommand{\personalHomeAddress}{$PERSONAL_HOME_ADDRESS}
         \newcommand{\personalSchoolAddress}{$PERSONAL_SCHOOL_ADDRESS}
         EOL
-        
-    - name: Compile Private Documents
-      run: |
-        pdflatex -interaction=nonstopmode resume.tex
-        pdflatex -interaction=nonstopmode cv.tex
-        bibtex cv
-        pdflatex -interaction=nonstopmode cv.tex
-        pdflatex -interaction=nonstopmode cv.tex
         
     - name: Upload Private PDFs
       uses: actions/upload-artifact@v3
