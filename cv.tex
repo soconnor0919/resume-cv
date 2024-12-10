@@ -42,20 +42,11 @@
 \noindent
 \begin{minipage}[t]{\textwidth} 
     \centering
-    \ifx\personalEmail\empty\else
-        Personal: \personalEmail%
-    \fi%
+    \mbox{Personal: \personalEmail}%
     \ifx\personalSchoolEmail\empty\else
-        \ifx\personalEmail\empty\else\\\fi
-        School: \personalSchoolEmail%
-    \fi%
-    \ifx\personalWebsite\empty\else
-        \ifx\personalEmail\empty
-            \ifx\personalSchoolEmail\empty\else\\\fi
-        \else\\%
-        \fi
-        Website: \href{https://\personalWebsite}{\personalWebsite}%
+        \\\mbox{School: \personalSchoolEmail}%
     \fi
+    \\\mbox{Website: \href{https://\personalWebsite}{\personalWebsite}}%
 \end{minipage}
 
 \vspace{1em}
