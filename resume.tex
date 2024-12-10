@@ -51,16 +51,22 @@
     \centering
     \ifx\personalEmail\empty\else
     \personalEmail
-    \ifx\personalSchoolEmail\empty\else\\\fi
     \fi
     \ifx\personalSchoolEmail\empty\else
+    \ifx\personalEmail\empty\else\\\fi
     \personalSchoolEmail
-    \ifx\personalPhone\empty\else\\\fi
     \fi
     \ifx\personalPhone\empty\else
-    \personalPhone\\
+    \ifx\personalEmail\empty\else\\\fi
+    \ifx\personalSchoolEmail\empty\else\\\fi
+    \personalPhone
     \fi
+    \ifx\personalWebsite\empty\else
+    \ifx\personalEmail\empty\else\\\fi
+    \ifx\personalSchoolEmail\empty\else\\\fi
+    \ifx\personalPhone\empty\else\\\fi
     \href{https://\personalWebsite}{\personalWebsite}
+    \fi
 \end{minipage}%
 \begin{minipage}[t]{0.33\textwidth}
     \raggedleft

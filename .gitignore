@@ -21,6 +21,9 @@
 *.synctex.gz
 *.fdb_latexmk
 
+# GitHub Secrets
+.secrets
+
 # Private information
 personal_info_private.tex
 
