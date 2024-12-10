@@ -6,9 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+  packages: read
+
 jobs:
   build-public:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v3
     
@@ -47,7 +51,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-private:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: github.actor == github.repository_owner
     steps:
     - uses: actions/checkout@v3
@@ -67,19 +71,21 @@ jobs:
         PERSONAL_HOME_ADDRESS: ${{ secrets.PERSONAL_HOME_ADDRESS }}
         PERSONAL_SCHOOL_ADDRESS: ${{ secrets.PERSONAL_SCHOOL_ADDRESS }}
       run: |
-        cat > personal_info.tex << EOL
+        cat > personal_info.tex << 'EOL'
         % Private version of personal information
         \newcommand{\personalName}{Sean O'Connor}
-        \newcommand{\personalEmail}{${PERSONAL_EMAIL}}
-        \newcommand{\personalPhone}{${PERSONAL_PHONE}}
+        \newcommand{\personalEmail}{$PERSONAL_EMAIL}
+        \newcommand{\personalPhone}{$PERSONAL_PHONE}
         \newcommand{\personalWebsite}{soconnor.dev}
-        \newcommand{\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
-        \newcommand{\personalHomeAddress}{${PERSONAL_HOME_ADDRESS}}
-        \newcommand{\personalSchoolAddress}{${PERSONAL_SCHOOL_ADDRESS}}
+        \newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL}
+        \newcommand{\personalHomeAddress}{$PERSONAL_HOME_ADDRESS}
+        \newcommand{\personalSchoolAddress}{$PERSONAL_SCHOOL_ADDRESS}
         EOL
+        envsubst < personal_info.tex > personal_info.tex.tmp
+        mv personal_info.tex.tmp personal_info.tex
         
     - name: Upload Private PDFs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: private-documents
         path: |
