@@ -60,6 +60,14 @@ jobs:
           cv.tex
         latexmk_use_xelatex: false
         
+    - name: Delete existing tag
+      continue-on-error: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git tag -d latest || true
+        git push origin :refs/tags/latest || true
+    
     - name: Upload Public PDFs as Release
       uses: softprops/action-gh-release@v1
       with:
@@ -71,6 +79,9 @@ jobs:
         body: |
           Latest version of resume and CV (public version)
         prerelease: false
+        draft: false
+        fail_on_unmatched_files: true
+        generate_release_notes: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
