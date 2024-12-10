@@ -42,11 +42,16 @@ jobs:
     - name: Cache TeX Live
       uses: actions/cache@v3
       with:
-        path: /tmp/texlive
-        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+        path: |
+          /tmp/texlive
+          ~/.texlive*
+        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex', 'subfiles/**/*.tex') }}
         restore-keys: |
           texlive-${{ runner.os }}-
     
+    - name: Create TeX Live directory
+      run: mkdir -p /tmp/texlive
+
     - name: Set up TeX Live
       uses: xu-cheng/latex-action@v3
       with:
@@ -107,11 +112,16 @@ jobs:
     - name: Cache TeX Live
       uses: actions/cache@v3
       with:
-        path: /tmp/texlive
-        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+        path: |
+          /tmp/texlive
+          ~/.texlive*
+        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex', 'subfiles/**/*.tex') }}
         restore-keys: |
           texlive-${{ runner.os }}-
     
+    - name: Create TeX Live directory
+      run: mkdir -p /tmp/texlive
+
     - name: Set up TeX Live
       uses: xu-cheng/latex-action@v3
       with:

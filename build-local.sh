@@ -68,23 +68,20 @@ cat > personal_info.tex << EOL
 % Public version of personal information
 \newcommand{\personalName}{$PERSONAL_NAME}
 \newcommand{\personalEmail}{$PERSONAL_EMAIL}
-\newcommand{\personalPhone}{}
-\newcommand{\personalWebsite}{$PERSONAL_WEBSITE}
-\newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL}
-\newcommand{\personalHomeAddressLineOne}{}
-\newcommand{\personalHomeAddressLineTwo}{}
-\newcommand{\personalSchoolAddressLineOne}{}
-\newcommand{\personalSchoolAddressLineTwo}{}
-\newcommand{\personalSchoolAddressLineThree}{}
+\newcommand{\personalPhone}{~}
+\newcommand{\personalWebsite}{$PERSONAL_WEBSITE || ~}
+\newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL || ~}
+\newcommand{\personalHomeAddressLineOne}{~}
+\newcommand{\personalHomeAddressLineTwo}{~}
+\newcommand{\personalSchoolAddressLineOne}{~}
+\newcommand{\personalSchoolAddressLineTwo}{~}
+\newcommand{\personalSchoolAddressLineThree}{~}
 EOL
 
 docker run --platform linux/arm64 --rm \
     -v "$(pwd):/workspace" \
     -v "$(pwd)/output:/workspace/output" \
     resume-builder bash -c "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex cv.tex && mv *.pdf output/"
-
-mv output/resume.pdf output/resume-public.pdf 2>/dev/null || true
-mv output/cv.pdf output/cv-public.pdf 2>/dev/null || true
 
 echo "Build complete!"
 echo "Generated files in output/:"
