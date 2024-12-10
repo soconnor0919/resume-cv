@@ -16,22 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Cache TeX Live
-      uses: actions/cache@v3
-      with:
-        path: /tmp/texlive
-        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
-        restore-keys: |
-          texlive-${{ runner.os }}-
-    
-    - name: Set up TeX Live
-      uses: xu-cheng/latex-action@v3
-      with:
-        root_file: |
-          resume.tex
-          cv.tex
-        latexmk_use_xelatex: false
-        
     - name: Create public info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
@@ -54,6 +38,22 @@ jobs:
         EOL
         envsubst < personal_info.tex > personal_info.tex.tmp
         mv personal_info.tex.tmp personal_info.tex
+    
+    - name: Cache TeX Live
+      uses: actions/cache@v3
+      with:
+        path: /tmp/texlive
+        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+        restore-keys: |
+          texlive-${{ runner.os }}-
+    
+    - name: Set up TeX Live
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: |
+          resume.tex
+          cv.tex
+        latexmk_use_xelatex: false
         
     - name: Upload Public PDFs as Release
       uses: softprops/action-gh-release@v1
@@ -75,29 +75,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Cache TeX Live
-      uses: actions/cache@v3
-      with:
-        path: /tmp/texlive
-        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
-        restore-keys: |
-          texlive-${{ runner.os }}-
-    
-    - name: Set up TeX Live
-      uses: xu-cheng/latex-action@v3
-      with:
-        root_file: |
-          resume.tex
-          cv.tex
-        latexmk_use_xelatex: false
-          
     - name: Create private info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
         PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL || '' }}
-        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE || '' }}
         PERSONAL_WEBSITE: ${{ secrets.PERSONAL_WEBSITE || '' }}
         PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL || '' }}
+        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE || '' }}
         PERSONAL_HOME_ADDRESS_LINE1: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE1 || '' }}
         PERSONAL_HOME_ADDRESS_LINE2: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE2 || '' }}
         PERSONAL_SCHOOL_ADDRESS_LINE1: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE1 || '' }}
@@ -119,6 +103,22 @@ jobs:
         EOL
         envsubst < personal_info.tex > personal_info.tex.tmp
         mv personal_info.tex.tmp personal_info.tex
+    
+    - name: Cache TeX Live
+      uses: actions/cache@v3
+      with:
+        path: /tmp/texlive
+        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
+        restore-keys: |
+          texlive-${{ runner.os }}-
+    
+    - name: Set up TeX Live
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: |
+          resume.tex
+          cv.tex
+        latexmk_use_xelatex: false
         
     - name: Upload Private PDFs
       uses: actions/upload-artifact@v4

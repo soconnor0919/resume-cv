@@ -5,28 +5,29 @@ if [ -f .secrets ]; then
     source .secrets
 else
     echo "Warning: .secrets file not found. Building public version only."
-    PERSONAL_PHONE=""
-    PERSONAL_HOME_ADDRESS_LINE1=""
-    PERSONAL_HOME_ADDRESS_LINE2=""
-    PERSONAL_SCHOOL_ADDRESS_LINE1=""
-    PERSONAL_SCHOOL_ADDRESS_LINE2=""
-    PERSONAL_SCHOOL_ADDRESS_LINE3=""
 fi
+
+# Set defaults for missing variables
+PERSONAL_NAME=${PERSONAL_NAME:-$(whoami)}
+PERSONAL_EMAIL=${PERSONAL_EMAIL:-""}
+PERSONAL_WEBSITE=${PERSONAL_WEBSITE:-""}
+PERSONAL_SCHOOL_EMAIL=${PERSONAL_SCHOOL_EMAIL:-""}
+PERSONAL_PHONE=${PERSONAL_PHONE:-""}
+PERSONAL_HOME_ADDRESS_LINE1=${PERSONAL_HOME_ADDRESS_LINE1:-""}
+PERSONAL_HOME_ADDRESS_LINE2=${PERSONAL_HOME_ADDRESS_LINE2:-""}
+PERSONAL_SCHOOL_ADDRESS_LINE1=${PERSONAL_SCHOOL_ADDRESS_LINE1:-""}
+PERSONAL_SCHOOL_ADDRESS_LINE2=${PERSONAL_SCHOOL_ADDRESS_LINE2:-""}
+PERSONAL_SCHOOL_ADDRESS_LINE3=${PERSONAL_SCHOOL_ADDRESS_LINE3:-""}
 
 # Function to cleanup
 cleanup() {
-    # Clean up LaTeX artifacts
     rm -f *.aux *.log *.out *.fls *.fdb_latexmk *.synctex.gz *.bbl *.blg *.pdf
-    # Only restore backup if it exists
     if [ -f personal_info.tex.bak ]; then
         mv personal_info.tex.bak personal_info.tex
     fi
 }
 
-# Ensure cleanup runs even if script fails
 trap cleanup EXIT
-
-# Create output directory
 mkdir -p output
 
 # Backup current personal_info.tex if it exists
@@ -39,11 +40,11 @@ if [ -n "$PERSONAL_PHONE" ] || [ -n "$PERSONAL_HOME_ADDRESS_LINE1" ] || [ -n "$P
     echo "Building private version..."
     cat > personal_info.tex << EOL
 % Private version of personal information
-\\newcommand{\\personalName}{Sean O'Connor}
-\\newcommand{\\personalEmail}{sean@soconnor.dev}
+\\newcommand{\\personalName}{${PERSONAL_NAME}}
+\\newcommand{\\personalEmail}{${PERSONAL_EMAIL}}
 \\newcommand{\\personalPhone}{${PERSONAL_PHONE}}
-\\newcommand{\\personalWebsite}{soconnor.dev}
-\\newcommand{\\personalSchoolEmail}{sso005@bucknell.edu}
+\\newcommand{\\personalWebsite}{${PERSONAL_WEBSITE}}
+\\newcommand{\\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
 \\newcommand{\\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
 \\newcommand{\\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
 \\newcommand{\\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
@@ -57,7 +58,6 @@ EOL
         -v "$(pwd)/output:/workspace/output" \
         resume-builder bash -c "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex cv.tex && mv *.pdf output/"
 
-    # Move files to final names
     mv output/resume.pdf output/resume-private.pdf 2>/dev/null || true
     mv output/cv.pdf output/cv-private.pdf 2>/dev/null || true
 fi
@@ -66,11 +66,11 @@ fi
 echo "Building public version..."
 cat > personal_info.tex << EOL
 % Public version of personal information
-\\newcommand{\\personalName}{Sean O'Connor}
-\\newcommand{\\personalEmail}{sean@soconnor.dev}
+\\newcommand{\\personalName}{${PERSONAL_NAME}}
+\\newcommand{\\personalEmail}{${PERSONAL_EMAIL}}
 \\newcommand{\\personalPhone}{}
-\\newcommand{\\personalWebsite}{soconnor.dev}
-\\newcommand{\\personalSchoolEmail}{sso005@bucknell.edu}
+\\newcommand{\\personalWebsite}{${PERSONAL_WEBSITE}}
+\\newcommand{\\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
 \\newcommand{\\personalHomeAddressLineOne}{}
 \\newcommand{\\personalHomeAddressLineTwo}{}
 \\newcommand{\\personalSchoolAddressLineOne}{}
@@ -83,7 +83,6 @@ docker run --platform linux/arm64 --rm \
     -v "$(pwd)/output:/workspace/output" \
     resume-builder bash -c "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex cv.tex && mv *.pdf output/"
 
-# Move files to final names
 mv output/resume.pdf output/resume-public.pdf 2>/dev/null || true
 mv output/cv.pdf output/cv-public.pdf 2>/dev/null || true
 
