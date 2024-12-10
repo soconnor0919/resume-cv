@@ -50,10 +50,12 @@
 \begin{minipage}[t]{0.33\textwidth} 
     \centering
     \ifx\personalEmail\empty\else
-    \personalEmail\\
+    \personalEmail
+    \ifx\personalSchoolEmail\empty\else\\\fi
     \fi
     \ifx\personalSchoolEmail\empty\else
-    \personalSchoolEmail\\
+    \personalSchoolEmail
+    \ifx\personalPhone\empty\else\\\fi
     \fi
     \ifx\personalPhone\empty\else
     \personalPhone\\

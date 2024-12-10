@@ -43,10 +43,12 @@
 \begin{minipage}[t]{\textwidth} 
     \centering
     \ifx\personalEmail\empty\else
-    Personal: \personalEmail\\
+    Personal: \personalEmail
+    \ifx\personalSchoolEmail\empty\else\\\fi
     \fi
     \ifx\personalSchoolEmail\empty\else
-    School: \personalSchoolEmail\\
+    School: \personalSchoolEmail
+    \ifx\personalWebsite\empty\else\\\fi
     \fi
     \href{https://\personalWebsite}{Website: \personalWebsite}
 \end{minipage}
