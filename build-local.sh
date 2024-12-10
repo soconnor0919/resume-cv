@@ -21,7 +21,7 @@ PERSONAL_SCHOOL_ADDRESS_LINE3=${PERSONAL_SCHOOL_ADDRESS_LINE3:-""}
 
 # Function to cleanup
 cleanup() {
-    rm -f *.aux *.log *.out *.fls *.fdb_latexmk *.synctex.gz *.bbl *.blg *.pdf
+    rm -f *.aux *.log *.out *.fls *.fdb_latexmk *.synctex.gz *.bbl *.blg
     if [ -f personal_info.tex.bak ]; then
         mv personal_info.tex.bak personal_info.tex
     fi
@@ -69,8 +69,8 @@ cat > personal_info.tex << EOL
 \newcommand{\personalName}{$PERSONAL_NAME}
 \newcommand{\personalEmail}{$PERSONAL_EMAIL}
 \newcommand{\personalPhone}{~}
-\newcommand{\personalWebsite}{$PERSONAL_WEBSITE || ~}
-\newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL || ~}
+\newcommand{\personalWebsite}{$PERSONAL_WEBSITE}
+\newcommand{\personalSchoolEmail}{$PERSONAL_SCHOOL_EMAIL}
 \newcommand{\personalHomeAddressLineOne}{~}
 \newcommand{\personalHomeAddressLineTwo}{~}
 \newcommand{\personalSchoolAddressLineOne}{~}
@@ -81,7 +81,7 @@ EOL
 docker run --platform linux/arm64 --rm \
     -v "$(pwd):/workspace" \
     -v "$(pwd)/output:/workspace/output" \
-    resume-builder bash -c "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex cv.tex && mv *.pdf output/"
+    resume-builder bash -c "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex cv.tex && mv resume.pdf output/resume-public.pdf && mv cv.pdf output/cv-public.pdf"
 
 echo "Build complete!"
 echo "Generated files in output/:"

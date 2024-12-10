@@ -95,16 +95,16 @@ jobs:
       run: |
         cat > personal_info.tex << 'EOL'
         % Private version of personal information
-        \\newcommand{\\personalName}{${PERSONAL_NAME}}
-        \\newcommand{\\personalEmail}{${PERSONAL_EMAIL}}
-        \\newcommand{\\personalPhone}{${PERSONAL_PHONE}}
-        \\newcommand{\\personalWebsite}{${PERSONAL_WEBSITE}}
-        \\newcommand{\\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
-        \\newcommand{\\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
-        \\newcommand{\\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
-        \\newcommand{\\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
-        \\newcommand{\\personalSchoolAddressLineTwo}{${PERSONAL_SCHOOL_ADDRESS_LINE2}}
-        \\newcommand{\\personalSchoolAddressLineThree}{${PERSONAL_SCHOOL_ADDRESS_LINE3}}
+        \newcommand{\personalName}{${PERSONAL_NAME}}
+        \newcommand{\personalEmail}{${PERSONAL_EMAIL}}
+        \newcommand{\personalPhone}{${PERSONAL_PHONE}}
+        \newcommand{\personalWebsite}{${PERSONAL_WEBSITE}}
+        \newcommand{\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
+        \newcommand{\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
+        \newcommand{\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
+        \newcommand{\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
+        \newcommand{\personalSchoolAddressLineTwo}{${PERSONAL_SCHOOL_ADDRESS_LINE2}}
+        \newcommand{\personalSchoolAddressLineThree}{${PERSONAL_SCHOOL_ADDRESS_LINE3}}
         EOL
         envsubst < personal_info.tex > personal_info.tex.tmp
         mv personal_info.tex.tmp personal_info.tex
