@@ -1,78 +1,15 @@
 \documentclass{article}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0em} 
-\usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc}
-\usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry}
 
-% Define spacing variables
-\newlength{\sectspaceabove}
-\newlength{\sectspacebelow}
-\setlength{\sectspaceabove}{-0em}  % Space before section titles
-\setlength{\sectspacebelow}{-0.5em}  % Space after section titles
-
-\usepackage{etoolbox}
-\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
-
-% Hide page numbers
-\pagestyle{empty}
-
-% Custom macro for small caps and bold
-\newcommand{\textscbf}[1]{\textbf{\textsc{#1}}}
-
-% Custom macro for section headers with controlled spacing
-\newcommand{\resumesection}[1]{%
-    \vspace{\sectspaceabove}%
-    \begin{center}
-        \textscbf{#1}
-    \end{center}%
-    \vspace{\sectspacebelow}%
-}
+% Include common style
+\input{shared/style/common}
 
 % Include personal information
 \input{personal_info}
 
 \begin{document}
-\begin{center}
-    {\large \textscbf{\personalName}}
-\end{center}
 
-\vspace{0.5em}
-
-\noindent
-\begin{minipage}[t]{0.33\textwidth}
-    \raggedright
-    \ifx\personalSchoolAddressLineOne\empty\else
-        \mbox{}\par\nobreak\vspace{-\baselineskip}
-        \personalSchoolAddressLineOne\\%
-        \personalSchoolAddressLineTwo\\%
-        \personalSchoolAddressLineThree%
-    \fi
-\end{minipage}%
-\hfill%
-\begin{minipage}[t]{0.33\textwidth} 
-    \centering
-    \href{mailto:\personalEmail}{\personalEmail}%
-    \ifx\personalSchoolEmail\empty\else
-        \\\href{mailto:\personalSchoolEmail}{\personalSchoolEmail}%
-    \fi
-    \\\href{https://\personalWebsite}{\personalWebsite}%
-    \ifx\personalPhone\empty\else
-        \\\personalPhone%
-    \fi
-\end{minipage}%
-\hfill%
-\begin{minipage}[t]{0.33\textwidth}
-    \raggedleft
-    \ifx\personalHomeAddressLineOne\empty\else
-        \personalHomeAddressLineOne\\%
-        \personalHomeAddressLineTwo%
-    \fi
-\end{minipage}
-
-\vspace{1em}
+% Header with contact information
+\input{shared/sections/header}
 
 % Professional Summary Section
 \noindent
@@ -82,14 +19,8 @@
     Published researcher in human-robot interaction with experience in both academic and commercial software development.
 \end{minipage}
 
-\resumesection{Education}
-
-\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-
-\textbf{Bachelor of Science in Computer Science and Engineering} \hfill \textbf{Expected Graduation: May 2026}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Cumulative Engineering GPA: 3.90. Dean's List: Fall 2022, Fall 2023, Spring 2024
-\end{itemize}
+% Education section
+\input{shared/sections/education}
 
 \resumesection{Experience}
 
@@ -118,7 +49,6 @@
 	\item Operated replay and instant highlight system for live broadcast to FloRacing and NBC Sports networks
 	\item Managed live production during race events, coordinating camera operators, replay, and graphics control
 \end{itemize}
-
 
 \textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
 
@@ -163,7 +93,6 @@
 	\item Worked under senior technical staff to assist faculty, staff and students with district-owned printers and computers
 	\item Assisted staff in one-laptop per person deployment and support in response to the COVID-19 pandemic, teaching students how to fully utilize newly-available remote learning tools and programs
 \end{itemize}
-
 
 \resumesection{Activities}
 
@@ -225,29 +154,9 @@
     \item Presented the design of our car in a poster session, heavily focusing on the safety-related aspects of our design
 \end{itemize}
 
-
-\resumesection{Publications}
-
-\nocite{*}
-\bibliography{subfiles/refs.bib}
-\bibliographystyle{plain}
-
-\resumesection{Relevant Coursework}
-
-\textbf{Systems \& Architecture:} Computer Systems, Operating Systems Design, Computer Networks \& Security
-
-\textbf{Software Development:} Software Engineering, Data Structures \& Algorithms, Research Methods, Ethics in Computing
-
-\textbf{Mathematics:} Calculus II, Linear Algebra, Discrete Mathematics, Statistics, Applied Statistics with R, Data Mining
-
-\resumesection{Skills \& Interests}
-
-\textbf{Languages \& Frameworks:} Java, C/C++, Python, JavaScript/TypeScript, React, Next.js, PHP, SQL
-
-\textbf{Backend \& DevOps:} REST APIs, MySQL, PostgreSQL, Docker, Apache Web Server, NGINX, ROS2
-
-\textbf{Cloud \& Infrastructure:} AWS, GCP, Azure, Backblaze, Linux (RHEL/Debian), CI/CD
-
-\textbf{Development Tools:} Git, JetBrains Suite, VS Code, Cursor, Linux CLI
+% Shared sections
+\input{shared/sections/publications}
+\input{shared/sections/coursework}
+\input{shared/sections/skills}
 
 \end{document}

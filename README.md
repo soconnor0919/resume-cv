@@ -12,16 +12,33 @@ This project demonstrates professional DevOps practices while providing a beauti
 - Containerized local development with Docker
 - Clean separation of content and styling
 
+## Latest PDFs
+
+The most recent public versions are always available at:
+- Resume: `https://github.com/USERNAME/resume-cv/releases/download/latest/resume.pdf`
+- CV: `https://github.com/USERNAME/resume-cv/releases/download/latest/cv.pdf`
+
+Replace `USERNAME` with your GitHub username after forking.
+
 ## Project Structure
 
 ```
 .
-├── cv.tex              # Extended CV template
-├── resume.tex          # Resume template
-├── .secrets            # Personal information (git-ignored)
-├── build-local.sh      # Local build script
+├── cv.tex                # Extended CV template
+├── resume.tex            # Resume template (subset of CV)
+├── shared/              # Shared components
+│   ├── style/          # Common LaTeX styles
+│   │   └── common.tex  # Shared style definitions
+│   └── sections/       # Shared content sections
+│       ├── header.tex  # Contact information
+│       ├── education.tex
+│       ├── skills.tex
+│       ├── coursework.tex
+│       └── publications.tex
+├── .secrets             # Personal information (git-ignored)
+├── build-local.sh       # Local build script
 └── subfiles/
-    └── refs.bib       # BibTeX references
+    └── refs.bib        # BibTeX references
 ```
 
 ## Using as a Template
@@ -33,11 +50,19 @@ This project demonstrates professional DevOps practices while providing a beauti
    - Private version includes all personal details from `.secrets`
    - The script automatically generates and cleans up temporary files
 
+## Modifying Content
+
+The project uses a modular structure to avoid duplication:
+- Common sections are stored in `shared/sections/`
+- Styling is defined in `shared/style/common.tex`
+- The resume is a subset of the CV, reusing shared components
+- Add new sections by creating files in `shared/sections/` and including them with `\input{}`
+
 ## CI/CD Pipeline
 
 The repository showcases modern DevOps practices through GitHub Actions:
 - Automated PDF generation on every push
-- Public version published as GitHub release
+- Public version published as GitHub release with stable URLs
 - Private version securely generated for repository owner
 - Environment variables managed through GitHub Secrets
 

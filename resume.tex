@@ -1,87 +1,18 @@
 \documentclass{article}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0em} 
-\usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc}
-\usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry}
 
-% Define spacing variables
-\newlength{\sectspaceabove}
-\newlength{\sectspacebelow}
-\setlength{\sectspaceabove}{-0.5em}  % Space before section titles
-\setlength{\sectspacebelow}{-0.5em}  % Space after section titles
-
-\usepackage{etoolbox}
-\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
-
-% Hide page numbers
-\pagestyle{empty}
-
-% Custom macro for small caps and bold
-\newcommand{\textscbf}[1]{\textbf{\textsc{#1}}}
-
-% Custom macro for section headers with controlled spacing
-\newcommand{\resumesection}[1]{%
-    \vspace{\sectspaceabove}%
-    \begin{center}
-        \textscbf{#1}
-    \end{center}%
-    \vspace{\sectspacebelow}%
-}
+% Include common style
+\input{shared/style/common}
 
 % Include personal information
 \input{personal_info}
 
 \begin{document}
-\begin{center}
-    {\large \textscbf{\personalName}}
-\end{center}
 
-\vspace{0.5em}
+% Header with contact information
+\input{shared/sections/header}
 
-\noindent
-\begin{minipage}[t]{0.33\textwidth}
-    \raggedright
-    \ifx\personalSchoolAddressLineOne\empty\else
-        \mbox{}\par\nobreak\vspace{-\baselineskip}
-        \personalSchoolAddressLineOne\\%
-        \personalSchoolAddressLineTwo\\%
-        \personalSchoolAddressLineThree%
-    \fi
-\end{minipage}%
-\hfill%
-\begin{minipage}[t]{0.33\textwidth} 
-    \centering
-    \href{mailto:\personalEmail}{\personalEmail}%
-    \ifx\personalSchoolEmail\empty\else
-        \\\href{mailto:\personalSchoolEmail}{\personalSchoolEmail}%
-    \fi
-    \\\href{https://\personalWebsite}{\personalWebsite}%
-    \ifx\personalPhone\empty\else
-        \\\personalPhone%
-    \fi
-\end{minipage}%
-\hfill%
-\begin{minipage}[t]{0.33\textwidth}
-    \raggedleft
-    \ifx\personalHomeAddressLineOne\empty\else
-        \personalHomeAddressLineOne\\%
-        \personalHomeAddressLineTwo%
-    \fi
-\end{minipage}
-
-\vspace{1em}
-
-\resumesection{Education}
-
-\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-
-\textbf{Bachelor of Science in Computer Science and Engineering} \hfill \textbf{Expected Graduation: May 2026}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Cumulative Engineering GPA: 3.90. Dean's List: Fall 2022, Fall 2023, Spring 2024
-\end{itemize}
+% Education section
+\input{shared/sections/education}
 
 \resumesection{Experience}
 
@@ -94,28 +25,6 @@
 \item Developed an intuitive content management system tailored for non-technical staff, enabling content management through familiar interfaces while maintaining website consistency
 \item Orchestrated migration to containerized architecture using Docker and implemented automated backup systems to improve reliability
 \end{itemize}
-
-%\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-%
-%\textbf{Computer Science Researcher - Human-Robot Interaction} \hfill \textbf{Jan 2023 – Present}
-%\begin{itemize}[noitemsep,topsep=2pt]
-%    \item Co-founded an interdisciplinary research lab and meeting group, engaging peers in the world of human-robot interaction 
-%    \item Led ongoing development of a platform for Human-Robot Interaction experiments, resulting in a first-author publication
-%\end{itemize}
-%
-%\textbf{Teaching Assistant and Tutor - Computer Science, Engineering, and Physics} \hfill \textbf{Aug 2023 - Present}
-%\begin{itemize}[noitemsep,topsep=2pt]
-%\item Mentored diverse student groups in Java programming, Arduino development, and physics lab experiments, adapting teaching methods to various learning styles
-%\item Guided engineering teams through agile development cycles while emphasizing ethical design considerations and proper documentation
-%\item Supported data analysis across disciplines using Excel, Logger Pro, and custom software tools
-%\item Fostered inclusive learning environments through hands-on workshops and one-on-one tutoring sessions
-%\end{itemize}
-%
-%\textbf{Computer Science Research Assistant - Chemical Engineering Department} \hfill \textbf{Aug 2023 – Present}
-%\begin{itemize}[noitemsep,topsep=2pt]
-%    \item Developed sensor systems to improve data collection in coffee-related biochemical research, enhancing accuracy and efficiency of experiments using custom software tools to streamline data analysis.
-%\end{itemize}
-%
 
 \textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
 
@@ -138,15 +47,7 @@
     \item Provided technical mentorship at the Engineering Study Spot, focusing on programming concepts and system design
 \end{itemize}
 
-
 \resumesection{Activities}
-
-%\textscbf{Bucknell Coffee Society} \hfill \textscbf{Lewisburg, PA}
-%
-%\textbf{Treasurer} \hfill \textbf{Oct 2023 – Present}
-%\begin{itemize}[noitemsep,topsep=2pt]
-%    \item Co-established and launched a new campus organization, managing financial operations and coordinating event logistics.
-%\end{itemize}
 
 \textscbf{AIChE Chem-E-Car Competition Team} \hfill \textscbf{Lewisburg, PA}
 
@@ -156,28 +57,9 @@
     \item Implemented finite state machine architecture integrating spectrometer readings, relay control, and LED feedback for real-time reaction monitoring in isolated chamber conditions
 \end{itemize}
 
-\resumesection{Publications}
-
-\nocite{*}
-\bibliography{subfiles/refs.bib}
-\bibliographystyle{plain}
-
-\resumesection{Relevant Coursework}
-
-\textbf{Systems \& Architecture:} Computer Systems, Operating Systems Design, Computer Networks \& Security
-
-\textbf{Software Development:} Software Engineering, Data Structures \& Algorithms, Research Methods, Ethics in Computing
-
-\textbf{Mathematics:} Calculus II, Linear Algebra, Discrete Mathematics, Statistics, Applied Statistics with R, Data Mining
-
-\resumesection{Skills \& Interests}
-
-\textbf{Languages \& Frameworks:} Java, C/C++, Python, JavaScript/TypeScript, React, Next.js, PHP, SQL
-
-\textbf{Backend \& DevOps:} REST APIs, MySQL, PostgreSQL, Docker, Apache Web Server, NGINX, ROS2
-
-\textbf{Cloud \& Infrastructure:} AWS, GCP, Azure, Backblaze, Linux (RHEL/Debian), CI/CD
-
-\textbf{Development Tools:} Git, JetBrains Suite, VS Code, Cursor, Linux CLI
+% Shared sections
+\input{shared/sections/publications}
+\input{shared/sections/coursework}
+\input{shared/sections/skills}
 
 \end{document}

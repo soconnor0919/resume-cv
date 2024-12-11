@@ -1,0 +1,31 @@
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em} 
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry}
+
+% Define spacing variables
+\newlength{\sectspaceabove}
+\newlength{\sectspacebelow}
+\setlength{\sectspaceabove}{-0.5em}  % Space before section titles
+\setlength{\sectspacebelow}{-0.5em}  % Space after section titles
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+% Hide page numbers
+\pagestyle{empty}
+
+% Custom macro for small caps and bold
+\newcommand{\textscbf}[1]{\textbf{\textsc{#1}}}
+
+% Custom macro for section headers with controlled spacing
+\newcommand{\resumesection}[1]{%
+    \vspace{\sectspaceabove}%
+    \begin{center}
+        \textscbf{#1}
+    \end{center}%
+    \vspace{\sectspacebelow}%
+} 

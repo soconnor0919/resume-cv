@@ -67,9 +67,29 @@ jobs:
           resume.pdf
           cv.pdf
         name: Latest PDFs
-        tag_name: release-${{ github.run_number }}
+        tag_name: latest
         body: |
           Latest version of resume and CV (public version)
+          
+          This release is automatically updated with each push to main. For versioned releases, see the numbered releases.
+        prerelease: false
+        draft: false
+        fail_on_unmatched_files: true
+        generate_release_notes: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # Create a numbered release for version history
+    - name: Create Numbered Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          resume.pdf
+          cv.pdf
+        name: Release ${{ github.run_number }}
+        tag_name: release-${{ github.run_number }}
+        body: |
+          Version ${{ github.run_number }} of resume and CV (public version)
         prerelease: false
         draft: false
         fail_on_unmatched_files: true
