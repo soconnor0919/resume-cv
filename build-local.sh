@@ -21,7 +21,7 @@ PERSONAL_SCHOOL_ADDRESS_LINE3=${PERSONAL_SCHOOL_ADDRESS_LINE3:-""}
 
 # Function to cleanup
 cleanup() {
-    rm -f *.aux *.log *.out *.fls *.fdb_latexmk *.synctex.gz *.bbl *.blg
+    rm -f *.aux *.log *.out *.fls *.fdb_latexmk *.synctex.gz *.bbl *.blg personal_info.tex
     if [ -f personal_info.tex.bak ]; then
         mv personal_info.tex.bak personal_info.tex
     fi
