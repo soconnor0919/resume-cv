@@ -16,31 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-    
-    - name: Cache Docker images
-      uses: actions/cache@v3
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${{ hashFiles('Dockerfile') }}
-        restore-keys: |
-          ${{ runner.os }}-buildx-
-    
-    - name: Load cached Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        load: true
-        tags: ghcr.io/xu-cheng/texlive-full:latest
-        cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
-    
-    - name: Move cache
-      run: |
-        rm -rf /tmp/.buildx-cache
-        mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-    
     - name: Create public info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
@@ -85,18 +60,6 @@ jobs:
           cv.tex
         latexmk_use_xelatex: false
         
-    - name: Move PDFs to root
-      run: |
-        ls -la *.pdf
-    
-    - name: Delete existing tag
-      continue-on-error: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git tag -d latest || true
-        git push origin :refs/tags/latest || true
-    
     - name: Upload Public PDFs as Release
       uses: softprops/action-gh-release@v1
       with:
@@ -104,7 +67,7 @@ jobs:
           resume.pdf
           cv.pdf
         name: Latest PDFs
-        tag_name: latest
+        tag_name: release-${{ github.run_number }}
         body: |
           Latest version of resume and CV (public version)
         prerelease: false
