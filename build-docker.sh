@@ -30,33 +30,9 @@ cleanup() {
 trap cleanup EXIT
 mkdir -p output
 
-# Check if required LaTeX tools are available locally
-check_latex_tools() {
-    command -v latexmk >/dev/null 2>&1 || return 1
-    command -v pdflatex >/dev/null 2>&1 || return 1
-    return 0
-}
-
-# Function to build using local tools
-build_local() {
-    latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode "$1"
-}
-
-# Function to build using Docker
-build_docker() {
-    echo "Local LaTeX tools not found, falling back to Docker..."
-    ./build-docker.sh
-    exit $?
-}
-
 # Backup current personal_info.tex if it exists
 if [ -f personal_info.tex ]; then
     cp personal_info.tex personal_info.tex.bak
-fi
-
-# Check if we can use local tools, otherwise fall back to Docker
-if ! check_latex_tools; then
-    build_docker
 fi
 
 # Build private version (if secrets are available)
@@ -76,11 +52,14 @@ if [ -n "$PERSONAL_PHONE" ] || [ -n "$PERSONAL_HOME_ADDRESS_LINE1" ] || [ -n "$P
 \newcommand{\personalSchoolAddressLineThree}{$PERSONAL_SCHOOL_ADDRESS_LINE3}
 EOL
 
-    build_local resume.tex
-    build_local cv.tex
-    
-    mv resume.pdf output/resume-private.pdf 2>/dev/null || true
-    mv cv.pdf output/cv-private.pdf 2>/dev/null || true
+    docker build --platform linux/arm64 -t resume-builder .
+    docker run --platform linux/arm64 --rm \
+        -v "$(pwd):/workspace" \
+        -v "$(pwd)/output:/workspace/output" \
+        resume-builder bash -c "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex cv.tex && mv *.pdf output/"
+
+    mv output/resume.pdf output/resume-private.pdf 2>/dev/null || true
+    mv output/cv.pdf output/cv-private.pdf 2>/dev/null || true
 fi
 
 # Build public version
@@ -99,11 +78,10 @@ cat > personal_info.tex << EOL
 \newcommand{\personalSchoolAddressLineThree}{~}
 EOL
 
-build_local resume.tex
-build_local cv.tex
-
-mv resume.pdf output/resume-public.pdf
-mv cv.pdf output/cv-public.pdf
+docker run --platform linux/arm64 --rm \
+    -v "$(pwd):/workspace" \
+    -v "$(pwd)/output:/workspace/output" \
+    resume-builder bash -c "latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex cv.tex && mv resume.pdf output/resume-public.pdf && mv cv.pdf output/cv-public.pdf"
 
 echo "Build complete!"
 echo "Generated files in output/:"
