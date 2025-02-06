@@ -24,9 +24,9 @@ Replace `USERNAME` with your GitHub username after forking.
 
 ```
 .
-├── cv.tex                # Extended CV template
-├── resume.tex            # Resume template (subset of CV)
-├── shared/              # Shared components
+├── cv.tex              # Extended CV template
+├── resume.tex          # Resume template (subset of CV)
+├── shared/             # Shared components
 │   ├── style/          # Common LaTeX styles
 │   │   └── common.tex  # Shared style definitions
 │   └── sections/       # Shared content sections
@@ -35,8 +35,10 @@ Replace `USERNAME` with your GitHub username after forking.
 │       ├── skills.tex
 │       ├── coursework.tex
 │       └── publications.tex
-├── .secrets             # Personal information (git-ignored)
-├── build-local.sh       # Local build script
+├── .secrets            # Personal information (git-ignored)
+├── build-local.sh      # Local build script
+├── build-docker.sh     # Docker build script
+├── generate-standalone-cv.sh # Generate standalone CV PDF
 └── subfiles/
     └── refs.bib        # BibTeX references
 ```
