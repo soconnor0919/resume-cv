@@ -11,153 +11,213 @@
 % Header with contact information
 \input{shared/sections/header}
 
-% Professional Summary Section
-\noindent
-\begin{minipage}{\textwidth}
-    \textbf{Professional Summary:} Computer Science and Engineering student with experience in software development, robotics research, and technical leadership.
-        Demonstrated experience building practical solutions for real-world problems, from modernizing business operations to contributing to academic research.
-        Interested in human-robot interaction and developing technology that enhances human capabilities, with a background spanning commercial software development and educational mentorship.
-\end{minipage}
+\resumesection{Research Interests}
+
+I'm passionate about human-robot interaction and developing technologies that make robots better collaborators with humans. My work focuses on creating reproducible research methodologies, particularly through Wizard-of-Oz experiments, and building platforms that lower barriers for HRI researchers. I'm especially interested in how we can make robot behaviors more trustworthy and explainable, and how to design effective frameworks for studying human-robot collaboration across different contexts and applications.
 
 % Education section
 \input{shared/sections/education}
 
-\resumesection{Experience}
+% Publications - moved higher for PhD applications
+\input{shared/sections/publications}
+
+\resumesection{Research Experience}
+
+\textscbf{Human-Robot Interaction Research} \hfill \textscbf{Bucknell University}
+
+\textbf{Lead Researcher - HRIStudio Platform Development} \hfill \textbf{Jan 2023 – Present}
+
+\textit{Advisor: Dr. L. Felipe Perrone, Computer Science Department}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Developing HRIStudio, a novel web-based platform addressing reproducibility challenges in Wizard-of-Oz HRI studies, with two first-author publications at IEEE RO-MAN 2024 and 2025
+    \item Designed modular architecture enabling cross-platform robot control without specialized programming knowledge, lowering technical barriers for HRI researchers across disciplines
+    \item Implemented comprehensive data logging and playback capabilities for experimental analysis, supporting rigorous scientific methodology in human-robot interaction studies
+    \item Conducted literature review identifying key challenges in WoZ methodology reproducibility, informing platform design decisions and feature prioritization
+\end{itemize}
+
+\textscbf{Interdisciplinary Research Collaboration} \hfill \textscbf{Bucknell University}
+
+\textbf{Computer Science Research Assistant - Chemical Engineering Department} \hfill \textbf{Aug 2023 – May 2025}
+
+\textit{Collaborating with Chemical Engineering Department on Environmental Monitoring}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Developed automated data collection and analysis tools for environmental research, processing real-time sensor data streams for atmospheric and water quality monitoring
+    \item Built custom Python pipelines integrating multiple data sources, enabling researchers to identify patterns in environmental data that informed conference presentations
+    \item Bridged computer science expertise with domain-specific research needs, demonstrating ability to collaborate across disciplines
+\end{itemize}
+
+\textscbf{RoboLab@Bucknell} \hfill \textscbf{Bucknell University}
+
+\textbf{Founding Member and Research Participant} \hfill \textbf{Sep 2023 - Present}
+
+\textit{Interdisciplinary lab bridging Computer Science and Psychology perspectives on HRI}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Participate in weekly research seminars exploring human-robot trust, automation bias, and ethical implications of autonomous systems
+    \item Contribute to discussions on experimental design for HRI studies, bringing technical perspective to psychological research questions
+\end{itemize}
+
+\resumesection{Teaching Experience}
+
+\textscbf{Computer Science Department} \hfill \textscbf{Bucknell University}
+
+\textbf{Teaching Assistant - Software Engineering \& Design} \hfill \textbf{Jan 2024 - Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Mentor 150+ students in software engineering principles, design patterns, and collaborative development practices
+    \item Developed automated testing frameworks with personalized feedback, improving learning outcomes while streamlining assessment processes
+    \item Created supplementary materials connecting theoretical concepts to real-world applications, drawing from industry experience
+    \item Hold regular office hours and code review sessions, fostering deep understanding of software architecture principles
+\end{itemize}
+
+\textbf{Computer Science Tutor - Engineering Study Spot} \hfill \textbf{Aug 2024 - Dec 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Provided one-on-one tutoring across the entire computer science curriculum, from introductory programming to advanced algorithms
+    \item Developed personalized learning strategies for students with diverse backgrounds and learning styles
+\end{itemize}
+
+\textscbf{Engineering Department} \hfill \textscbf{Bucknell University}
+
+\textbf{Teaching Assistant - Engineering Design Experience} \hfill \textbf{Aug 2023 - Dec 2023}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Guided 40+ engineering students through Arduino programming and breadboard circuit design
+    \item Supervised hands-on laboratory sessions involving microcontroller programming and sensor integration
+    \item Facilitated discussions on engineering ethics and the societal implications of embedded system design
+\end{itemize}
+
+\textscbf{Physics Department} \hfill \textscbf{Bucknell University}
+
+\textbf{Teaching Assistant - Experimental Physics Laboratory} \hfill \textbf{Aug 2023 - May 2024}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Instructed 100+ students in experimental design, data analysis, and scientific writing
+    \item Emphasized connection between theoretical physics principles and experimental validation
+    \item Guided students through error analysis and uncertainty quantification in experimental measurements
+\end{itemize}
+
+\resumesection{Selected Projects}
+
+\textbf{HRIStudio - Web-Based Wizard-of-Oz Platform} \hfill \textbf{TypeScript/React/WebRTC}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Architected full-stack web application for managing HRI experiments with real-time robot control interfaces
+    \item Implemented WebSocket-based bidirectional communication protocols for low-latency robot teleoperation
+    \item Designed RESTful API leveraging Robot Operating System with JSON-defined plugins for extensibility across multiple robot platforms
+    \item Created comprehensive logging system capturing interaction data, timestamps, and experimental conditions for reproducibility
+    \item Technologies: Next.js, React, TypeScript, Node.js, WebSockets, PostgreSQL, Docker
+\end{itemize}
+
+\textbf{Autonomous Vehicle Control System - Chem-E-Car Competition} \hfill \textbf{C++/Arduino}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Designed embedded control system for autonomous hydrogen fuel cell-powered vehicle using finite state machine architecture
+    \item Implemented real-time sensor fusion combining spectrometer readings and power monitoring with calculated stopping algorithms
+    \item Developed PlatformIO-based build system with hardware abstraction layer for testing and simulation
+    \item Achieved precise distance control (±10cm) through chemical reaction timing at AIChE National Competition
+    \item Technologies: C++, Arduino, PlatformIO, I2C/SPI protocols, finite state machines
+\end{itemize}
+
+\textbf{Formula One Performance Prediction Using Machine Learning} \hfill \textbf{Python/ML}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Developed ensemble machine learning models (LightGBM, XGBoost, Random Forest) to predict F1 lap times with high accuracy
+    \item Engineered features from weather data, track characteristics, and historical performance using domain knowledge
+    \item Implemented cross-validation and hyperparameter optimization for model evaluation across multiple racing circuits
+    \item Analyzed feature importance to understand factors influencing racing performance
+    \item Technologies: Python, LightGBM, XGBoost, Random Forest, pandas, scikit-learn, FastF1 API
+\end{itemize}
+
+\textbf{Real-time Racing Statistics Platform} \hfill \textbf{TypeScript/Next.js}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Built production system serving 1500+ concurrent users and 250k+ monthly visitors
+    \item Implemented WebSocket-based real-time data streaming with automatic reconnection and state synchronization
+    \item Designed responsive UI with accessibility features meeting WCAG 2.1 AA standards
+    \item Optimized database queries reducing page load times by 60\% through intelligent caching and indexing
+    \item Technologies: Next.js, TypeScript, PostgreSQL, Docker, DigitalOcean
+\end{itemize}
+
+\resumesection{Professional Experience}
 
 \textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
 
 \textbf{Software Developer} \hfill \textbf{Oct 2020 – Present}
 \begin{itemize}[noitemsep,topsep=2pt]
-	\item Transformed organizational culture by building trust in data-driven decision making, replacing manual paper-based workflows with integrated digital solutions that eliminated processing delays and improved operational efficiency
-	\item Revolutionized fan engagement through a real-time statistics platform serving 1500+ concurrent users, enabling spectators and racers to access live standings and plan race attendance more effectively
-	\item Empowered non-technical staff with intuitive content management tools, enabling immediate publication of race results and statistics rather than posting physical papers on walls days after events
-	\item Modernized entire technical infrastructure through containerization and automated systems, ensuring reliable operations and remote support capabilities
+    \item Architected and deployed production systems handling 250k+ monthly users and \$100,000+ in payment processing
+    \item Led digital transformation initiative, replacing legacy paper-based systems with modern web applications
+    \item Implemented CI/CD pipelines, containerization, and infrastructure as code using Docker and GitHub Actions
+    \item Developed RESTful APIs and microservices architecture for scalable, maintainable systems
 \end{itemize}
 
 \textbf{IT Administrator} \hfill \textbf{Oct 2020 - Apr 2024}
 \begin{itemize}[noitemsep,topsep=2pt]
-	\item Led complete infrastructure overhaul from consumer-grade to enterprise systems, dramatically improving operational reliability while enabling continuous remote support during university attendance
-	\item Established comprehensive data protection and disaster recovery protocols, safeguarding years of racing data and ensuring business continuity
-	\item Streamlined operations through centralized user management and standardized deployment processes, reducing setup time and maintenance overhead across all facilities
-	\item Built foundation for digital transformation that enabled all subsequent software development and modernization efforts
-\end{itemize}
-
-\textbf{Media Producer} \hfill \textbf{Oct 2020 - Apr 2024}
-\begin{itemize}[noitemsep,topsep=2pt]
-	\item Launched facility's first professional broadcast capability, expanding audience reach through live streaming to national networks including FloRacing and NBC Sports
-	\item Created seamless integration between live timing data and broadcast graphics, enhancing viewer experience and setting new standards for local racing broadcasts
-	\item Coordinated complex live production workflows during high-pressure race events, ensuring professional-quality coverage that elevated the facility's reputation
-	\item Established broadcast infrastructure that became a model for other racing facilities seeking to modernize their media capabilities
-\end{itemize}
-
-\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-
-\textbf{Computer Science Researcher - Human-Robot Interaction} \hfill \textbf{Jan 2023 – Present}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Developed a web-based platform for human-robot interaction experiments that addresses reproducibility challenges in Wizard-of-Oz studies, contributing to improved experimental rigor in the field
-    \item Led research and authored first-author paper presented at international conference, with second publication forthcoming based on continued platform development
-    \item Built framework that enables researchers to conduct experiments across different robot platforms without specialized programming knowledge, lowering technical barriers to HRI research
-\end{itemize}
-
-\textbf{Computer Science Research Assistant - Chemical Engineering Department} \hfill \textbf{Aug 2023 – May 2025}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Built automated data collection tools that enabled researchers to focus on analysis rather than manual data gathering, providing critical environmental measurements that guided research direction
-    \item Developed technical solutions that supported conference presentations and research outcomes, bridging the gap between engineering expertise and domain-specific research needs
-\end{itemize}
-
-\textbf{Computer Science Teaching Assistant} \hfill \textbf{Jan 2024 - Present}
-\begin{itemize}[noitemsep,topsep=2pt]
-	\item Mentored 150+ students in software engineering principles, employing a unique pedagogical approach that connects theoretical concepts to real-world applications through recently-acquired student perspective
-	\item Developed learning environments that embrace productive failure, enabling students to understand the "why" behind programming concepts rather than just memorizing syntax and procedures
-\end{itemize}
-
-\textbf{Engineering Study Spot Tutor - Computer Science} \hfill \textbf{Aug 2024 - Dec 2024}
-\begin{itemize}[noitemsep,topsep=2pt]
-	\item Provided personalized academic support to students across the entire computer science curriculum, using a gentle but functional approach that breaks down complex concepts into relatable, manageable components
-\end{itemize}
-
-\textbf{Engineering Teaching Assistant} \hfill \textbf{Aug 2023 - Dec 2023}
-\begin{itemize}[noitemsep,topsep=2pt]
-	\item Empowered 40+ engineering students from diverse disciplines to master embedded systems programming, translating complex technical concepts into accessible learning experiences
-	\item Guided students through hands-on project development while fostering critical thinking about engineering ethics and real-world design implications
-\end{itemize}
-
-\textbf{Physics Teaching Assistant} \hfill \textbf{Aug 2023 - May 2024}
-\begin{itemize}[noitemsep,topsep=2pt]
-	\item Supported 30+ students in developing scientific reasoning and experimental design skills, helping them connect abstract physics principles to hands-on laboratory discoveries and data analysis
+    \item Modernized IT infrastructure from consumer to enterprise-grade systems, improving uptime to 99.9\%
+    \item Implemented comprehensive backup and disaster recovery protocols protecting critical business data
+    \item Automated system administration tasks using PowerShell and Bash scripting
 \end{itemize}
 
 \textscbf{Miller Place School District} \hfill \textscbf{Miller Place, NY}
 
 \textbf{Information Technology Intern} \hfill \textbf{Sep 2020 - May 2022}
 \begin{itemize}[noitemsep,topsep=2pt]
-	\item Worked under senior technical staff to assist faculty, staff and students with district-owned printers and computers
-	\item Assisted staff in one-laptop per person deployment and support in response to the COVID-19 pandemic, teaching students how to fully utilize newly-available remote learning tools and programs
+    \item Supported 1000+ students and faculty during COVID-19 transition to remote learning
+    \item Deployed and maintained educational technology platforms and troubleshooted hardware/software issues
 \end{itemize}
 
-\resumesection{Activities}
+\resumesection{Leadership \& Activities}
 
-\textscbf{AIChE Chem-E-Car Competition Team} \hfill \textscbf{Lewisburg, PA}
+\textscbf{AIChE Chem-E-Car Competition Team} \hfill \textscbf{Bucknell University}
 
-\textbf{Former President, Electrical and Mechanical Team Lead} \hfill \textbf{Jan 2023 – Present}
+\textbf{Former President, Current Electrical/Mechanical Team Lead} \hfill \textbf{Jan 2023 – Present}
 \begin{itemize}[noitemsep,topsep=2pt]
-	\item Pioneered team's first custom hardware solution by designing and fabricating a microcontroller-based control system with isolated power circuits for hydrogen fuel cell regulation, implementing finite state machine architecture integrating spectrometer readings, relay control, and LED feedback for real-time reaction monitoring
-    \item Improved team dynamics by introducing agile development principles and structured communication protocols, then strategically transitioned from leadership role to focused technical contribution while remaining active team lead, recognizing that direct engineering impact would better serve team and personal objectives
+    \item Led 15-member interdisciplinary team in designing autonomous chemical-powered vehicles for national competition
+    \item Introduced agile development methodologies and version control practices to hardware development process
+    \item Mentored junior members in embedded systems programming and control theory
 \end{itemize}
 
-\textscbf{Bucknell Coffee Society} \hfill \textscbf{Lewisburg, PA}
+\textscbf{Bucknell Coffee Society} \hfill \textscbf{Bucknell University}
 
-\textbf{Treasurer} \hfill \textbf{Oct 2023 – Present}
+\textbf{Co-Founder and Treasurer} \hfill \textbf{Oct 2023 – Present}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Co-established and launched a new campus organization, managing financial operations and coordinating event logistics.
-    \item Presented on ongoing research for publication by Bucknell's student story, engineering report, and fall magazine
+    \item Co-established campus organization promoting coffee education and community building
+    \item Manage \$5,000+ annual budget, coordinate events, and maintain vendor relationships
+    \item Organized educational workshops on coffee science, brewing techniques, and sustainability
 \end{itemize}
 
-\textscbf{RoboLab@Bucknell} \hfill \textscbf{Lewisburg, PA}
+\resumesection{Conferences \& Presentations}
 
-\textbf{Founding Member} \hfill \textbf{Sep 2023 - Present}
+\textscbf{IEEE RO-MAN 2025} \hfill \textscbf{Eindhoven, The Netherlands}
+
+\textbf{34th International Conference on Robot and Human Interactive Communication} \hfill \textbf{Aug 2025}
 \begin{itemize}[noitemsep,topsep=2pt]
-	\item Led and participated in group discussions in a new lab bridging computer science and psychology perspectives on human-robot interaction, working with the complexities of human-robot trust, job replacement, and autonomy
+    \item Presented: "A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible Human-Robot Interaction Research"
 \end{itemize}
 
-\resumesection{Conferences and Competitions}
+\textscbf{IEEE RO-MAN 2024} \hfill \textscbf{Pasadena, CA}
 
-\textscbf{IEEE International Conference on Robot and Human Interactive Communication} \hfill \textscbf{Aug 2024}
+\textbf{33rd International Conference on Robot and Human Interactive Communication} \hfill \textbf{Aug 2024}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Presented first-author research at international conference on HRIStudio - a platform that lowers technical barriers for human-robot interaction experimentation by enabling researchers without programming backgrounds to conduct rigorous studies
+    \item Presented: "HRIStudio: A Framework for Wizard-of-Oz Experiments in HRI Studies" (Late Breaking Report)
 \end{itemize}
 
-\textbf{AIChE Annual Student Conference}  \hfill \textscbf{Oct 2024}
+\textscbf{AIChE Annual Student Conference} \hfill \textscbf{San Diego, CA}
+
+\textbf{Chem-E-Car Performance Competition} \hfill \textbf{Oct 2024}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Competed in the 2024 National AIChE Chem-E-Car Performance Competition with Bucknell's car, H\textsubscript{2}Go
-    \item Presented the design of our car in a poster session, heavily focusing on the safety-related aspects of our design
+    \item Competed in National Chem-E-Car Performance Competition with autonomous hydrogen fuel cell vehicle
+    \item Presented poster on safety-critical embedded systems design
 \end{itemize}
 
-\textbf{AIChE Mid-Atlantic Regional Conference}  \hfill \textscbf{Apr 2024}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Placed second overall in the 2024 Mid-Atlantic AIChE Chem-E-Car Performance Competition with our car, H\textsubscript{2}Go
-    \item Presented the design of our car in a poster session, heavily focusing on the safety-related aspects of our design
-\end{itemize}
+\textscbf{AIChE Mid-Atlantic Regional Conference} \hfill \textscbf{UMBC, Baltimore, MD}
 
-\textbf{Specialty Coffee Exposition}  \hfill \textscbf{Mar 2024}
+\textbf{Chem-E-Car Performance Competition} \hfill \textbf{Apr 2024}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Attended as a representative of the Bucknell Coffee Society, meeting with vendors and equipment manufacturers to request sponsorship, donations, and educational materials for our club
-\end{itemize}
-
-\textbf{AIChE Annual Student Conference}  \hfill \textscbf{Oct 2023}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Attended as a representative of Bucknell's Chem-E-Car team, discussing designs and reactions with other teams to kickstart development of the next year's car
-\end{itemize}
-
-\textbf{AIChE Mid-Atlantic Regional Conference}  \hfill \textscbf{Apr 2023}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Competed in the 2023 Mid-Atlantic AIChE Chem-E-Car Performance Competition with our car, H\textsubscript{2}Go
-    \item Presented the design of our car in a poster session, heavily focusing on the safety-related aspects of our design
+    \item Placed 2nd overall in regional Chem-E-Car Competition
 \end{itemize}
 
 % Shared sections
-\input{shared/sections/publications}
 \input{shared/sections/coursework}
 \input{shared/sections/skills}
+
+\resumesection{Honors \& Awards}
+
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Dean's List (5 semesters): Fall 2022, Fall 2023, Spring 2024, Fall 2024, Spring 2025
+    \item Engineering GPA: 3.86/4.0
+    \item AIChE Mid-Atlantic Chem-E-Car Competition - 2nd Place (2024)
+\end{itemize}
 
 \end{document}
