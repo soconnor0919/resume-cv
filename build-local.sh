@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if building specific CV variant
+CV_VARIANT=""
+if [ "$1" = "cv-upenn" ]; then
+    CV_VARIANT="cv-upenn"
+    echo "Building UPenn-optimized CV..."
+fi
+
 # Source secrets if the file exists
 if [ -f .secrets ]; then
     source .secrets
@@ -78,7 +85,7 @@ EOL
 
     build_local resume.tex
     build_local cv.tex
-    
+
     mv resume.pdf output/resume-private.pdf 2>/dev/null || true
     mv cv.pdf output/cv-private.pdf 2>/dev/null || true
 fi
@@ -99,12 +106,19 @@ cat > personal_info.tex << EOL
 \newcommand{\personalSchoolAddressLineThree}{~}
 EOL
 
-build_local resume.tex
-build_local cv.tex
+# Build specific CV variant if requested
+if [ "$CV_VARIANT" = "cv-upenn" ]; then
+    build_local cv-upenn.tex
+    mv cv-upenn.pdf output/cv-upenn.pdf
+    echo "UPenn CV build complete! Generated: output/cv-upenn.pdf"
+else
+    build_local resume.tex
+    build_local cv.tex
 
-mv resume.pdf output/resume-public.pdf
-mv cv.pdf output/cv-public.pdf
+    mv resume.pdf output/resume-public.pdf
+    mv cv.pdf output/cv-public.pdf
 
-echo "Build complete!"
-echo "Generated files in output/:"
-ls -l output/ 
+    echo "Build complete!"
+    echo "Generated files in output/:"
+    ls -l output/
+fi
