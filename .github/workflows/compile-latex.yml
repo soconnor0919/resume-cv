@@ -16,7 +16,7 @@ jobs:
     container: ghcr.io/xu-cheng/texlive-alpine:latest
     steps:
     - name: Install system dependencies
-      run: apk add --no-cache git gettext bash
+      run: apk add --no-cache git gettext bash nodejs
 
     - uses: actions/checkout@v4
     
@@ -97,7 +97,7 @@ jobs:
     if: github.actor == github.repository_owner
     steps:
     - name: Install system dependencies
-      run: apk add --no-cache git gettext bash
+      run: apk add --no-cache git gettext bash nodejs
 
     - uses: actions/checkout@v4
     
