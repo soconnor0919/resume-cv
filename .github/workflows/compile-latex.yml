@@ -12,10 +12,13 @@ permissions:
 
 jobs:
   build-public:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
+    - name: Install gettext
+      run: sudo apt-get update && sudo apt-get install -y gettext
+
     - name: Create public info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
@@ -40,7 +43,7 @@ jobs:
         mv personal_info.tex.tmp personal_info.tex
     
     - name: Cache TeX Live
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           /tmp/texlive
@@ -53,7 +56,7 @@ jobs:
       run: mkdir -p /tmp/texlive
 
     - name: Set up TeX Live
-      uses: xu-cheng/latex-action@v3
+      uses: xu-cheng/latex-action@v4
       with:
         root_file: |
           resume.tex
@@ -61,7 +64,7 @@ jobs:
         latexmk_use_xelatex: false
         
     - name: Upload Public PDFs as Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: |
           resume.pdf
@@ -81,7 +84,7 @@ jobs:
 
     # Create a numbered release for version history
     - name: Create Numbered Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: |
           resume.pdf
@@ -98,11 +101,14 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-private:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     if: github.actor == github.repository_owner
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
+    - name: Install gettext
+      run: sudo apt-get update && sudo apt-get install -y gettext
+
     - name: Create private info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
@@ -133,7 +139,7 @@ jobs:
         mv personal_info.tex.tmp personal_info.tex
     
     - name: Cache TeX Live
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           /tmp/texlive
@@ -146,7 +152,7 @@ jobs:
       run: mkdir -p /tmp/texlive
 
     - name: Set up TeX Live
-      uses: xu-cheng/latex-action@v3
+      uses: xu-cheng/latex-action@v4
       with:
         root_file: |
           resume.tex
