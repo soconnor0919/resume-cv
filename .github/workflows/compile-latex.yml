@@ -13,12 +13,13 @@ permissions:
 jobs:
   build-public:
     runs-on: ubuntu-latest
+    container: ghcr.io/xu-cheng/texlive-alpine:latest
     steps:
+    - name: Install system dependencies
+      run: apk add --no-cache git gettext bash
+
     - uses: actions/checkout@v4
     
-    - name: Install gettext
-      run: sudo apt-get update && sudo apt-get install -y gettext
-
     - name: Create public info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
@@ -55,13 +56,10 @@ jobs:
     - name: Create TeX Live directory
       run: mkdir -p /tmp/texlive
 
-    - name: Set up TeX Live
-      uses: xu-cheng/latex-action@v4
-      with:
-        root_file: |
-          resume.tex
-          cv.tex
-        latexmk_use_xelatex: false
+    - name: Compile LaTeX
+      run: |
+        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
+        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
         
     - name: Upload Public PDFs as Release
       uses: softprops/action-gh-release@v2
@@ -102,13 +100,14 @@ jobs:
 
   build-private:
     runs-on: ubuntu-latest
+    container: ghcr.io/xu-cheng/texlive-alpine:latest
     if: github.actor == github.repository_owner
     steps:
+    - name: Install system dependencies
+      run: apk add --no-cache git gettext bash
+
     - uses: actions/checkout@v4
     
-    - name: Install gettext
-      run: sudo apt-get update && sudo apt-get install -y gettext
-
     - name: Create private info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
@@ -151,13 +150,10 @@ jobs:
     - name: Create TeX Live directory
       run: mkdir -p /tmp/texlive
 
-    - name: Set up TeX Live
-      uses: xu-cheng/latex-action@v4
-      with:
-        root_file: |
-          resume.tex
-          cv.tex
-        latexmk_use_xelatex: false
+    - name: Compile LaTeX
+      run: |
+        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
+        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
         
     - name: Upload Private PDFs
       uses: actions/upload-artifact@v4
