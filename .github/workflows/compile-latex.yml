@@ -62,9 +62,9 @@ jobs:
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
         
     - name: Upload Public PDFs as Release
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.14.0
       with:
-        artifacts: "resume.pdf,cv.pdf"
+        artifacts: "*.pdf"
         name: Latest PDFs
         tag: latest
         body: |
@@ -79,9 +79,9 @@ jobs:
 
     # Create a numbered release for version history
     - name: Create Numbered Release
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.14.0
       with:
-        artifacts: "resume.pdf,cv.pdf"
+        artifacts: "*.pdf"
         name: Release ${{ github.run_number }}
         tag: release-${{ github.run_number }}
         body: |
