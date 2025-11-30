@@ -15,8 +15,8 @@ This project demonstrates professional DevOps practices while providing a beauti
 ## Latest PDFs
 
 The most recent public versions are always available at:
-- Resume: `https://github.com/USERNAME/resume-cv/releases/download/latest/resume.pdf`
-- CV: `https://github.com/USERNAME/resume-cv/releases/download/latest/cv.pdf`
+- Resume: `https://github.com/soconnor0919/resume-cv/releases/download/latest/resume.pdf`
+- CV: `https://github.com/soconnor0919/resume-cv/releases/download/latest/cv.pdf`
 
 Replace `USERNAME` with your GitHub username after forking.
 
