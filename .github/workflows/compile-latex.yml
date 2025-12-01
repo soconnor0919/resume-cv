@@ -149,7 +149,7 @@ jobs:
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
         
     - name: Upload Private PDFs
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: private-documents
         path: |
