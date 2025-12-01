@@ -60,11 +60,16 @@ jobs:
       run: |
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
+    
+    - name: List generated PDFs
+      run: ls -la *.pdf
         
     - name: Upload Public PDFs as Release
       uses: ncipollo/release-action@v1.14.0
       with:
-        artifacts: "*.pdf"
+        artifacts: |
+          resume.pdf
+          cv.pdf
         name: Latest PDFs
         tag: latest
         body: |
@@ -81,7 +86,9 @@ jobs:
     - name: Create Numbered Release
       uses: ncipollo/release-action@v1.14.0
       with:
-        artifacts: "*.pdf"
+        artifacts: |
+          resume.pdf
+          cv.pdf
         name: Release ${{ github.run_number }}
         tag: release-${{ github.run_number }}
         body: |
@@ -147,6 +154,9 @@ jobs:
       run: |
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
+    
+    - name: List generated PDFs
+      run: ls -la *.pdf
         
     - name: Upload Private PDFs
       uses: actions/upload-artifact@v3
