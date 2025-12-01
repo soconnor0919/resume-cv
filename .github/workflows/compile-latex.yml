@@ -65,38 +65,29 @@ jobs:
       run: ls -la *.pdf
         
     - name: Upload Public PDFs as Release
-      uses: ncipollo/release-action@v1.14.0
+      uses: svenstaro/upload-release-action@v2
       with:
-        artifacts: |
-          resume.pdf
-          cv.pdf
-        name: Latest PDFs
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: "*.pdf"
         tag: latest
+        overwrite: true
+        file_glob: true
         body: |
           Latest version of resume and CV (public version)
           
           This release is automatically updated with each push to main. For versioned releases, see the numbered releases.
-        prerelease: false
-        draft: false
-        allowUpdates: true
-        replacesArtifacts: true
-        token: ${{ secrets.GITHUB_TOKEN }}
 
     # Create a numbered release for version history
     - name: Create Numbered Release
-      uses: ncipollo/release-action@v1.14.0
+      uses: svenstaro/upload-release-action@v2
       with:
-        artifacts: |
-          resume.pdf
-          cv.pdf
-        name: Release ${{ github.run_number }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: "*.pdf"
         tag: release-${{ github.run_number }}
+        overwrite: true
+        file_glob: true
         body: |
           Version ${{ github.run_number }} of resume and CV (public version)
-        prerelease: false
-        draft: false
-        allowUpdates: true
-        token: ${{ secrets.GITHUB_TOKEN }}
 
   build-private:
     runs-on: ubuntu-latest
