@@ -65,29 +65,29 @@ jobs:
       run: ls -la *.pdf
         
     - name: Upload Public PDFs as Release
-      uses: svenstaro/upload-release-action@v2
+      uses: akkuman/gitea-release-action@v1
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: "*.pdf"
-        tag: latest
-        overwrite: true
-        file_glob: true
-        body: |
-          Latest version of resume and CV (public version)
-          
-          This release is automatically updated with each push to main. For versioned releases, see the numbered releases.
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          resume.pdf
+          cv.pdf
+        name: Latest PDFs
+        tag_name: latest
+        prerelease: false
+        draft: false
 
     # Create a numbered release for version history
     - name: Create Numbered Release
-      uses: svenstaro/upload-release-action@v2
+      uses: akkuman/gitea-release-action@v1
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: "*.pdf"
-        tag: release-${{ github.run_number }}
-        overwrite: true
-        file_glob: true
-        body: |
-          Version ${{ github.run_number }} of resume and CV (public version)
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          resume.pdf
+          cv.pdf
+        name: Release ${{ github.run_number }}
+        tag_name: release-${{ github.run_number }}
+        prerelease: false
+        draft: false
 
   build-private:
     runs-on: ubuntu-latest
