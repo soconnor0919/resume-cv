@@ -1,38 +1,19 @@
-# LaTeX build files
+# Ignore build artifacts
+build/
+output/
+
+# LaTeX temporary files
 *.aux
-*.lof
 *.log
-*.lot
-*.fls
 *.out
-*.toc
-*.fmt
-*.fot
-*.cb
-*.cb2
-.*.lb
-*.pdf
-*.dvi
-*.xdv
-*-converted-to.*
-.pdf
+*.fls
+*.fdb_latexmk
+*.synctex.gz
 *.bbl
 *.blg
-*.synctex.gz
-*.fdb_latexmk
 
-# GitHub Secrets
+# Personal information
 .secrets
 
-# Private information
-personal_info_private.tex
-personal_info.tex
-
-# macOS system files
+# OS files
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Editor files
-.vscode/
-.idea/

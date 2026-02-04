@@ -3,8 +3,8 @@
 % Include common style
 \input{shared/style/common}
 
-% Include personal information
-\input{personal_info}
+% Include personal information (check build/ first, then root)
+\IfFileExists{build/personal_info.tex}{\input{build/personal_info}}{\input{personal_info}}
 
 \begin{document}
 
@@ -13,7 +13,7 @@
 
 \resumesection{Research Interests}
 
-I'm passionate about human-robot interaction and developing technologies that make robots better collaborators with humans. My work focuses on creating reproducible research methodologies, particularly through Wizard-of-Oz experiments, and building platforms that lower barriers for HRI researchers. I'm especially interested in how we can make robot behaviors more trustworthy and explainable, and how to design effective frameworks for studying human-robot collaboration across different contexts and applications.
+My research focuses on advancing human-robot interaction through improved experimental methodologies and accessible research tools. I am particularly interested in Wizard-of-Oz experimental frameworks, reproducibility in HRI studies, and developing platforms that democratize access to HRI research across disciplines. My work with HRIStudio addresses critical challenges in experimental reproducibility and cross-platform robot control, enabling researchers without specialized programming expertise to conduct rigorous HRI studies. I am passionate about exploring how we can make robot behaviors more trustworthy and explainable, particularly through transparent experimental design and comprehensive data logging. Looking forward, I aim to investigate how standardized experimental frameworks can advance our understanding of human-robot trust, collaboration dynamics, and the design of intuitive robot interfaces across diverse application domains.
 
 % Education section
 \input{shared/sections/education}
@@ -28,12 +28,16 @@ I'm passionate about human-robot interaction and developing technologies that ma
 \textbf{Lead Researcher - HRIStudio Platform Development} \hfill \textbf{Jan 2023 – Present}
 
 \textit{Advisor: Dr. L. Felipe Perrone, Computer Science Department}
+
+\textit{Research Commitment: 3.5 credits of individual study (CSCI 278/378) across 6 semesters}
 \begin{itemize}[noitemsep,topsep=2pt]
     \item Developing HRIStudio, a novel web-based platform addressing reproducibility challenges in Wizard-of-Oz HRI studies, with two first-author publications at IEEE RO-MAN 2024 and 2025
-    \item Designed modular architecture enabling cross-platform robot control without specialized programming knowledge, lowering technical barriers for HRI researchers across disciplines
-    \item Implemented comprehensive data logging and playback capabilities for experimental analysis, supporting rigorous scientific methodology in human-robot interaction studies
-    \item Currently developing honors thesis evaluating platform effectiveness and impact on interdisciplinary HRI research accessibility
-    \item Conducted literature review identifying key challenges in WoZ methodology reproducibility, informing platform design decisions and feature prioritization
+    \item Architected modular plugin system enabling cross-platform robot control (NAO, Pepper, custom platforms) through JSON-defined interfaces, eliminating need for specialized programming knowledge
+    \item Implemented WebSocket-based bidirectional communication protocols for low-latency robot teleoperation with real-time state synchronization
+    \item Designed comprehensive data logging system capturing interaction timelines, robot states, and experimental conditions with microsecond precision for reproducibility analysis
+    \item Developed RESTful API leveraging Robot Operating System (ROS) for extensible robot integration across multiple platforms
+    \item Currently developing honors thesis evaluating platform effectiveness through user studies and analyzing impact on interdisciplinary HRI research accessibility
+    \item Conducted systematic literature review identifying key challenges in WoZ methodology reproducibility, informing platform design decisions and feature prioritization
 \end{itemize}
 
 \textscbf{Interdisciplinary Research Collaboration} \hfill \textscbf{Bucknell University}
@@ -94,6 +98,15 @@ I'm passionate about human-robot interaction and developing technologies that ma
 \end{itemize}
 
 \resumesection{Selected Projects}
+
+\textbf{Computer System from Scratch - Nand2Tetris (ECEG 431)} \hfill \textbf{HDL/Assembly/Java}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Built complete computer system from NAND gates through operating system, demonstrating comprehensive understanding of computer architecture
+    \item Designed and simulated all hardware components including logic gates, ALU, RAM, and CPU using hardware description language
+    \item Developed complete software stack: assembler for machine code translation, virtual machine translator for intermediate code, and compiler for high-level object-oriented language
+    \item Implemented functional operating system with memory management, I/O handling, and graphics capabilities
+    \item Technologies: Hardware Description Language (HDL), Assembly, Jack (object-oriented language), Java
+\end{itemize}
 
 \textbf{HRIStudio - Web-Based Wizard-of-Oz Platform} \hfill \textbf{TypeScript/React/WebRTC}
 \begin{itemize}[noitemsep,topsep=2pt]
@@ -216,8 +229,8 @@ I'm passionate about human-robot interaction and developing technologies that ma
 \resumesection{Honors \& Awards}
 
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Dean's List (5 semesters): Fall 2022, Fall 2023, Spring 2024, Fall 2024, Spring 2025
-    \item Engineering GPA: 3.86/4.0
+    \item Dean's List (6 semesters): Fall 2022, Fall 2023, Spring 2024, Fall 2024, Spring 2025, Fall 2025
+    \item GPA: 3.67/4.0 \textbullet{} Engineering GPA: 3.88/4.0
     \item AIChE Mid-Atlantic Chem-E-Car Competition - 2nd Place (2024)
 \end{itemize}
 

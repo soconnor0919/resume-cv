@@ -9,7 +9,7 @@ A LaTeX-based resume and CV generator with automated builds for both public and 
 This project demonstrates professional DevOps practices while providing a beautiful LaTeX resume:
 - Automated builds via GitHub Actions for continuous deployment
 - Secure handling of sensitive information through environment variables
-- Containerized local development with Docker
+- Makefile-based build system for easy local development
 - Clean separation of content and styling
 
 ## Latest PDFs
@@ -39,10 +39,13 @@ Replace `USERNAME` with your GitHub username after forking.
 │       ├── skills.tex
 │       ├── coursework.tex
 │       └── publications.tex
+├── scripts/            # Build helper scripts
+│   └── generate-personal-info.sh
+├── build/              # Build artifacts (git-ignored)
+├── output/             # Final PDFs (git-ignored)
 ├── .secrets            # Personal information (git-ignored)
-├── build-local.sh      # Local build script
-├── build-docker.sh     # Docker build script
-├── generate-standalone-cv.sh # Generate standalone CV PDF
+├── Makefile            # Build system
+├── Dockerfile          # Docker build environment
 └── subfiles/
     └── refs.bib        # BibTeX references
 ```
@@ -51,10 +54,44 @@ Replace `USERNAME` with your GitHub username after forking.
 
 1. Fork this repository
 2. Copy `.secrets-template` to `.secrets` and fill in your personal information
-3. Run `./build-local.sh` to generate both public and private versions
+3. Run `make` to generate both public and private versions
    - Public version omits sensitive information like phone and address
    - Private version includes all personal details from `.secrets`
-   - The script automatically generates and cleans up temporary files
+
+## Building
+
+### Using Make (Recommended)
+
+```bash
+# Build everything (public and private versions)
+make
+
+# Build only public versions
+make public
+
+# Build only private versions
+make private
+
+# Build only resume
+make resume
+
+# Build only CV
+make cv
+
+# Clean build artifacts
+make clean
+
+# Show all available targets
+make help
+```
+
+### Using Docker
+
+If you don't have LaTeX installed locally:
+
+```bash
+make docker
+```
 
 ## Modifying Content
 

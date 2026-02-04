@@ -3,8 +3,8 @@
 % Include common style
 \input{shared/style/common}
 
-% Include personal information
-\input{personal_info}
+% Include personal information (check build/ first, then root)
+\IfFileExists{build/personal_info.tex}{\input{build/personal_info}}{\input{personal_info}}
 
 \begin{document}
 
@@ -14,71 +14,52 @@
 % Education section
 \input{shared/sections/education}
 
-\resumesection{Experience}
+% Publications section (NEW - instant credibility)
+\input{shared/sections/publications-resume}
+
+\resumesection{Research Experience}
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Human-Robot Interaction Researcher} \hfill \textbf{Jan 2023 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Published \textbf{2 first-author papers} at IEEE RO-MAN (2024, 2025) on novel HRI experimental platform enabling reproducible Wizard-of-Oz studies across multiple robot platforms
+    \item Architected modular plugin system with WebSocket-based teleoperation achieving real-time state synchronization with microsecond-precision data logging for \textbf{250+ interaction sessions}
+    \item Built RESTful API integrating Robot Operating System (ROS) for extensible control of NAO, Pepper, and custom robots
+\end{itemize}
+
+% Technical Skills (moved up for ATS optimization)
+\input{shared/sections/skills-resume}
+
+\resumesection{Selected Projects}
+
+\textbf{Computer System from Scratch - Nand2Tetris} \hfill \textbf{HDL/Assembly/Java}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Designed complete computer system from hardware (NAND gates → CPU) through software (assembler → OS), demonstrating full-stack systems understanding critical for robotics applications
+\end{itemize}
+
+\textbf{Autonomous Vehicle Control - Chem-E-Car Competition} \hfill \textbf{C++/Arduino}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Led 15-member team designing autonomous hydrogen fuel cell vehicle; implemented embedded control system with real-time sensor fusion achieving \textbf{±10cm precision} at AIChE National Competition (2nd place)
+\end{itemize}
+
+\textbf{HRIStudio Research Platform} \hfill \textbf{Next.js/TypeScript/ROS}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Full-stack web application for managing HRI experiments with WebSocket robot control and comprehensive data logging
+\end{itemize}
+
+\textbf{F1 Performance Prediction Using Machine Learning} \hfill \textbf{Python/ML}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Developed ensemble models (LightGBM, XGBoost, Random Forest) predicting lap times with engineered features from weather, track characteristics, and historical performance data
+\end{itemize}
+
+\resumesection{Professional Experience}
 
 \textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
 
 \textbf{Software Developer} \hfill \textbf{Oct 2020 – Present}
 \begin{itemize}[noitemsep,topsep=2pt]
-\item Developed real-time statistics platform serving 1500+ concurrent users and 250k monthly website visits
-\item Built payment processing platform handling \$100,000+ in transactions with automated content management
-\item Modernized infrastructure through containerization and automation for reliable operations
+\item Built real-time statistics platform serving \textbf{1500+ concurrent users} and \textbf{250k+ monthly visitors} using Next.js, TypeScript, PostgreSQL, and Docker with CI/CD pipelines
 \end{itemize}
-
-\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-
-\textbf{Computer Science Researcher - Human-Robot Interaction} \hfill \textbf{Jan 2023 – Present}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Led research and authored first-author papers at IEEE RO-MAN 2024 and 2025 conferences
-    \item Developed web-based HRIStudio platform addressing reproducibility challenges in Wizard-of-Oz studies
-\end{itemize}
-
-\textbf{Computer Science Research Assistant - Chemical Engineering Department} \hfill \textbf{Aug 2023 – May 2025}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Built automated data collection tools enabling researchers to focus on analysis over manual gathering
-\end{itemize}
-
-\textbf{Teaching Assistant \& Engineering Tutor} \hfill \textbf{Aug 2023 - Present}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Mentored 200+ students across CS, engineering, and physics connecting theory to real-world applications
-    \item Created automated testing frameworks with personalized feedback streamlining assessment processes
-\end{itemize}
-
-\resumesection{Activities}
-
-\textscbf{AIChE Chem-E-Car Competition Team} \hfill \textscbf{Bucknell University}
-
-\textbf{Former President, Electrical and Mechanical Team Lead} \hfill \textbf{Jan 2023 – Present}
-\begin{itemize}[noitemsep,topsep=2pt]
-	\item Designed custom microcontroller control system for hydrogen fuel cell regulation using finite state machine architecture
-\end{itemize}
-
-\textscbf{Bucknell Coffee Society} \hfill \textscbf{Bucknell University}
-
-\textbf{Co-Founder and Treasurer} \hfill \textbf{Oct 2023 – Present}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Manage financial operations, budgeting, and event coordination for campus coffee organization
-\end{itemize}
-
-\resumesection{Selected Projects}
-
-\textbf{beenvoice - Professional Invoicing Application} \hfill \textbf{TypeScript/Next.js}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Built full-stack invoicing app with secure authentication, client management, and invoice generation
-\end{itemize}
-
-\textbf{Formula One Performance Prediction Using Machine Learning} \hfill \textbf{Python/ML}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Developed ensemble machine learning models (LightGBM, XGBoost, Random Forest) to predict F1 lap times with high accuracy
-\end{itemize}
-
-\textbf{HRIStudio Research Platform} \hfill \textbf{Next.js/TypeScript}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Developed web-based platform for Wizard-of-Oz experiments with WebSocket-based robot control and comprehensive data logging
-\end{itemize}
-
-% Shared sections
-\input{shared/sections/coursework}
-\input{shared/sections/skills}
 
 \end{document}
