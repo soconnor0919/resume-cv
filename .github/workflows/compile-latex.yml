@@ -123,10 +123,10 @@ jobs:
         prerelease: false
         draft: false
 
-  build-private:
+  build-private-github:
     runs-on: ubuntu-latest
     container: ghcr.io/xu-cheng/texlive-alpine:latest
-    if: github.actor == github.repository_owner
+    if: github.actor == github.repository_owner && github.server_url == 'https://github.com'
     steps:
     - name: Install system dependencies
       run: apk add --no-cache git gettext bash nodejs
@@ -183,8 +183,7 @@ jobs:
     - name: List generated PDFs
       run: ls -la *.pdf
         
-    - name: Upload Private PDFs (GitHub)
-      if: github.server_url == 'https://github.com'
+    - name: Upload Private PDFs
       uses: actions/upload-artifact@v4
       with:
         name: private-documents
@@ -192,8 +191,67 @@ jobs:
           resume.pdf
           cv.pdf
 
-    - name: Upload Private PDFs (Gitea)
-      if: github.server_url != 'https://github.com'
+  build-private-gitea:
+    runs-on: ubuntu-latest
+    container: ghcr.io/xu-cheng/texlive-alpine:latest
+    if: github.actor == github.repository_owner && github.server_url != 'https://github.com'
+    steps:
+    - name: Install system dependencies
+      run: apk add --no-cache git gettext bash nodejs
+
+    - uses: actions/checkout@v4
+    
+    - name: Create private info file
+      env:
+        PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
+        PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL || '' }}
+        PERSONAL_WEBSITE: ${{ secrets.PERSONAL_WEBSITE || '' }}
+        PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL || '' }}
+        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE || '' }}
+        PERSONAL_HOME_ADDRESS_LINE1: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE1 || '' }}
+        PERSONAL_HOME_ADDRESS_LINE2: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE2 || '' }}
+        PERSONAL_SCHOOL_ADDRESS_LINE1: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE1 || '' }}
+        PERSONAL_SCHOOL_ADDRESS_LINE2: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE2 || '' }}
+        PERSONAL_SCHOOL_ADDRESS_LINE3: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE3 || '' }}
+      run: |
+        cat > personal_info.tex << 'EOL'
+        % Private version of personal information
+        \newcommand{\personalName}{${PERSONAL_NAME}}
+        \newcommand{\personalEmail}{${PERSONAL_EMAIL}}
+        \newcommand{\personalPhone}{${PERSONAL_PHONE}}
+        \newcommand{\personalWebsite}{${PERSONAL_WEBSITE}}
+        \newcommand{\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
+        \newcommand{\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
+        \newcommand{\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
+        \newcommand{\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
+        \newcommand{\personalSchoolAddressLineTwo}{${PERSONAL_SCHOOL_ADDRESS_LINE2}}
+        \newcommand{\personalSchoolAddressLineThree}{${PERSONAL_SCHOOL_ADDRESS_LINE3}}
+        EOL
+        envsubst < personal_info.tex > personal_info.tex.tmp
+        mv personal_info.tex.tmp personal_info.tex
+    
+    - name: Cache TeX Live
+      uses: actions/cache@v4
+      with:
+        path: |
+          /tmp/texlive
+          ~/.texlive*
+        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex', 'subfiles/**/*.tex') }}
+        restore-keys: |
+          texlive-${{ runner.os }}-
+    
+    - name: Create TeX Live directory
+      run: mkdir -p /tmp/texlive
+
+    - name: Compile LaTeX
+      run: |
+        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
+        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
+    
+    - name: List generated PDFs
+      run: ls -la *.pdf
+        
+    - name: Upload Private PDFs
       uses: actions/upload-artifact@v3
       with:
         name: private-documents
