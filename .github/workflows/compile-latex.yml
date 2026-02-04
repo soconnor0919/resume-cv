@@ -64,8 +64,9 @@ jobs:
     - name: List generated PDFs
       run: ls -la *.pdf
         
-    # Create/update latest release
-    - name: Upload Public PDFs as Release
+    # --- GITHUB RELEASES (Run only on GitHub) ---
+    - name: Upload Public PDFs as Release (GitHub)
+      if: github.server_url == 'https://github.com'
       uses: ncipollo/release-action@v1
       with:
         artifacts: "resume.pdf,cv.pdf"
@@ -80,8 +81,8 @@ jobs:
         removeArtifacts: true
         replacesArtifacts: true
 
-    # Create a numbered release for version history
-    - name: Create Numbered Release
+    - name: Create Numbered Release (GitHub)
+      if: github.server_url == 'https://github.com'
       uses: ncipollo/release-action@v1
       with:
         artifacts: "resume.pdf,cv.pdf"
@@ -94,6 +95,33 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         draft: false
         prerelease: false
+
+    # --- GITEA RELEASES (Run only on Gitea) ---
+    - name: Upload Public PDFs as Release (Gitea)
+      if: github.server_url != 'https://github.com'
+      uses: akkuman/gitea-release-action@v1
+      with:
+        token: ${{ secrets.GITEA_TOKEN }}
+        files: |
+          resume.pdf
+          cv.pdf
+        name: Latest PDFs
+        tag_name: latest
+        prerelease: false
+        draft: false
+
+    - name: Create Numbered Release (Gitea)
+      if: github.server_url != 'https://github.com'
+      uses: akkuman/gitea-release-action@v1
+      with:
+        token: ${{ secrets.GITEA_TOKEN }}
+        files: |
+          resume.pdf
+          cv.pdf
+        name: Release ${{ github.run_number }}
+        tag_name: release-${{ github.run_number }}
+        prerelease: false
+        draft: false
 
   build-private:
     runs-on: ubuntu-latest
