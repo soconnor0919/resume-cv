@@ -66,39 +66,34 @@ jobs:
         
     # Create/update latest release
     - name: Upload Public PDFs as Release
-      uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: ncipollo/release-action@v1
       with:
-        files: |
-          resume.pdf
-          cv.pdf
-        tag_name: latest
+        artifacts: "resume.pdf,cv.pdf"
+        tag: latest
         name: Latest PDFs
         body: |
           Latest compiled resume and CV (public versions)
           
           Built from commit ${{ github.sha }}
-        prerelease: false
-        draft: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+        allowUpdates: true
+        removeArtifacts: true
+        replacesArtifacts: true
 
     # Create a numbered release for version history
     - name: Create Numbered Release
-      uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: ncipollo/release-action@v1
       with:
-        files: |
-          resume.pdf
-          cv.pdf
-        tag_name: release-${{ github.run_number }}
+        artifacts: "resume.pdf,cv.pdf"
+        tag: release-${{ github.run_number }}
         name: Release ${{ github.run_number }}
         body: |
           Automated release #${{ github.run_number }}
           
           Built from commit ${{ github.sha }}
-        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
         draft: false
+        prerelease: false
 
   build-private:
     runs-on: ubuntu-latest
