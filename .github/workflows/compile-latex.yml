@@ -67,6 +67,8 @@ jobs:
     # Create/update latest release
     - name: Upload Public PDFs as Release
       uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
           resume.pdf
@@ -83,6 +85,8 @@ jobs:
     # Create a numbered release for version history
     - name: Create Numbered Release
       uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
           resume.pdf
