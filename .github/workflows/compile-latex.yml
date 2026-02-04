@@ -64,28 +64,35 @@ jobs:
     - name: List generated PDFs
       run: ls -la *.pdf
         
+    # Create/update latest release
     - name: Upload Public PDFs as Release
-      uses: akkuman/gitea-release-action@v1
+      uses: softprops/action-gh-release@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         files: |
           resume.pdf
           cv.pdf
-        name: Latest PDFs
         tag_name: latest
+        name: Latest PDFs
+        body: |
+          Latest compiled resume and CV (public versions)
+          
+          Built from commit ${{ github.sha }}
         prerelease: false
         draft: false
 
     # Create a numbered release for version history
     - name: Create Numbered Release
-      uses: akkuman/gitea-release-action@v1
+      uses: softprops/action-gh-release@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         files: |
           resume.pdf
           cv.pdf
-        name: Release ${{ github.run_number }}
         tag_name: release-${{ github.run_number }}
+        name: Release ${{ github.run_number }}
+        body: |
+          Automated release #${{ github.run_number }}
+          
+          Built from commit ${{ github.sha }}
         prerelease: false
         draft: false
 
