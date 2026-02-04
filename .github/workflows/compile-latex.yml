@@ -183,7 +183,17 @@ jobs:
     - name: List generated PDFs
       run: ls -la *.pdf
         
-    - name: Upload Private PDFs
+    - name: Upload Private PDFs (GitHub)
+      if: github.server_url == 'https://github.com'
+      uses: actions/upload-artifact@v4
+      with:
+        name: private-documents
+        path: |
+          resume.pdf
+          cv.pdf
+
+    - name: Upload Private PDFs (Gitea)
+      if: github.server_url != 'https://github.com'
       uses: actions/upload-artifact@v3
       with:
         name: private-documents
