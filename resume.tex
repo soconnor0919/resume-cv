@@ -14,54 +14,56 @@
 % Education section
 \input{shared/sections/education}
 
-% Publications section (research credibility)
-\input{shared/sections/publications-resume}
+% Publications section
+\resumesection{Publications}
 
-\resumesection{Professional Experience}
-
-\textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
-
-\textbf{Software Developer} \hfill \textbf{Oct 2020 – Present}
+\textbf{First Author, IEEE International Conference on Robot \& Human Interactive Communication (RO-MAN)}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Architected and deployed full-stack real-time statistics platform serving 1500+ concurrent users and 250k+ monthly visitors using Next.js, TypeScript, PostgreSQL, and Docker
-    \item Engineered scalable backend infrastructure with optimized database queries and WebSocket connections achieving sub-100ms response times for live race data updates across 20+ simultaneous events
-    \item Designed and implemented RESTful APIs for mobile applications and third-party integrations, processing 10M+ API requests monthly
-    \item Built automated CI/CD pipelines with GitHub Actions and monitoring systems, maintaining 99.9\% uptime across racing season
-\end{itemize}
-
-\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-
-\textbf{Teaching Assistant - Software Engineering \& Engineering Design} \hfill \textbf{Aug 2023 – Present}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Mentor 150+ students across software engineering, design patterns, and embedded systems (Arduino, microcontrollers)
-    \item Developed automated testing frameworks and grading tools, improving learning outcomes while streamlining assessment processes
+    \item O'Connor, S. \& Perrone, L.F. ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible HRI Research'' \textit{IEEE RO-MAN 2025}, Eindhoven, The Netherlands
+    \item O'Connor, S. \& Perrone, L.F. ``HRIStudio: A Framework for Wizard-of-Oz Experiments in HRI Studies'' \textit{IEEE RO-MAN 2024}, Pasadena, CA
+    \item O'Connor, S. ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible HRI Research'' \textit{Bachelor's Honors Thesis}, Bucknell University, 2026
 \end{itemize}
 
 \resumesection{Research Experience}
 
 \textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
 
-\textbf{Human-Robot Interaction Researcher} \hfill \textbf{Jan 2023 – Present}
+\textbf{Human-Robot Interaction Researcher} \hfill \textbf{Jan 2023 – May 2026}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Published 2 first-author papers at IEEE RO-MAN (2024, 2025) on novel HRI experimental platform enabling reproducible Wizard-of-Oz studies across multiple robot platforms
-    \item Architected modular plugin system with WebSocket-based teleoperation and RESTful API integrating ROS for NAO, Pepper, and custom robots
+    \item Published 2 first-author papers at IEEE RO-MAN (2024, 2025) on HRIStudio, a web-based Wizard-of-Oz platform enabling reproducible HRI studies across multiple robot platforms
+    \item Completed honors thesis evaluating HRIStudio via pilot study: achieved 100\% design fidelity and 96.7 execution reliability vs.\ 66.7 baseline; SUS score 76.7 vs.\ 59.2 for Choregraphe
+    \item Architected modular plugin system with WebSocket teleoperation and RESTful API integrating ROS for NAO, Pepper, and custom robots
+\end{itemize}
+
+\resumesection{Professional Experience}
+
+\textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
+
+\textbf{Software Developer} \hfill \textbf{Oct 2020 – May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Architected and deployed full-stack real-time statistics platform serving 1500+ concurrent users and 250k+ monthly visitors using Next.js, TypeScript, PostgreSQL, and Docker
+    \item Designed and implemented RESTful APIs for mobile applications and third-party integrations, processing 10M+ API requests monthly
+    \item Built automated CI/CD pipelines with GitHub Actions and monitoring systems, maintaining 99.9\% uptime across racing season
+\end{itemize}
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Teaching Assistant – Software Engineering \& Engineering Design} \hfill \textbf{Aug 2023 – May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Mentored 150+ students across software engineering, design patterns, and embedded systems (Arduino, microcontrollers)
+    \item Developed automated testing frameworks and grading tools, improving learning outcomes while streamlining assessment processes
 \end{itemize}
 
 \resumesection{Selected Projects}
 
-\textbf{Computer System from Scratch - Nand2Tetris} \hfill \textbf{HDL/Assembly/Java}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Designed complete computer system from hardware (NAND gates → CPU) through software (assembler → OS), demonstrating full-stack systems understanding critical for robotics applications
-\end{itemize}
-
-\textbf{Autonomous Vehicle Control - Chem-E-Car Competition} \hfill \textbf{C++/Arduino}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Led 15-member team designing autonomous hydrogen fuel cell vehicle; implemented embedded control system with real-time sensor fusion achieving ±10cm precision at AIChE National Competition (2nd place)
-\end{itemize}
-
 \textbf{HRIStudio Research Platform} \hfill \textbf{Next.js/TypeScript/ROS}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Full-stack web application for managing HRI experiments with WebSocket robot control and comprehensive data logging
+    \item Full-stack web application for managing HRI experiments with WebSocket robot control, role-based access, and comprehensive data logging for reproducibility
+\end{itemize}
+
+\textbf{Autonomous Vehicle Control – Chem-E-Car Competition} \hfill \textbf{C++/Arduino}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Led 15-member team; implemented embedded control system with real-time sensor fusion achieving \textpm10cm precision at AIChE National Competition (2nd place, 2024)
 \end{itemize}
 
 % Technical Skills
