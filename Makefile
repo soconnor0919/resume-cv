@@ -12,7 +12,7 @@ SCRIPTS_DIR = scripts
 export BUILD_DIR
 
 # Targets
-.PHONY: all clean docker-build docker public private resume cv help
+.PHONY: all clean docker-build docker public private resume cv first-ascent help
 
 all: public private
 
@@ -79,6 +79,14 @@ cv: $(OUTPUT_DIR) $(BUILD_DIR)
 	@TEXINPUTS=".:$(BUILD_DIR):" $(LATEX) -output-directory=$(BUILD_DIR) cv.tex
 	@cp $(BUILD_DIR)/cv.pdf $(OUTPUT_DIR)/cv-private.pdf
 	@echo "CV built successfully!"
+
+# First Ascent USA application (2-page targeted version)
+first-ascent: $(OUTPUT_DIR) $(BUILD_DIR)
+	@echo "Building First Ascent resume..."
+	@$(SCRIPTS_DIR)/generate-personal-info.sh private
+	@TEXINPUTS=".:$(BUILD_DIR):" $(LATEX) -output-directory=$(BUILD_DIR) first-ascent.tex
+	@cp $(BUILD_DIR)/first-ascent.pdf $(OUTPUT_DIR)/first-ascent.pdf
+	@echo "Built output/first-ascent.pdf"
 
 # Docker build
 docker-build:

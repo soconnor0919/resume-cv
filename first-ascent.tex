@@ -1,0 +1,127 @@
+\documentclass{article}
+
+% Include common style
+\input{shared/style/common}
+
+% Include personal information (check build/ first, then root)
+\IfFileExists{build/personal_info.tex}{\input{build/personal_info}}{\input{personal_info}}
+
+\begin{document}
+
+% Header with contact information
+\input{shared/sections/header}
+
+\resumesection{Profile}
+
+CS \& engineering graduate with 2 first-author publications at IEEE RO-MAN, 3.71/4.0 GPA, and six years building production software at scale. Researcher who ships: HRIStudio went from academic concept to a platform deployed across robot hardware; Riverhead Raceway serves 250k+ monthly visitors and 10M+ API requests/month. Starting M.S. in Computer Engineering at Boston University fall 2026.
+
+% Education section
+\input{shared/sections/education}
+
+\resumesection{Publications}
+
+\textbf{First Author, IEEE International Conference on Robot \& Human Interactive Communication (RO-MAN)}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item O'Connor, S. \& Perrone, L.F. ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible HRI Research'' \textit{IEEE RO-MAN 2025}, Eindhoven, The Netherlands
+    \item O'Connor, S. \& Perrone, L.F. ``HRIStudio: A Framework for Wizard-of-Oz Experiments in HRI Studies'' \textit{IEEE RO-MAN 2024}, Pasadena, CA
+    \item O'Connor, S. ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible HRI Research'' \textit{Bachelor's Honors Thesis}, Bucknell University, 2026
+\end{itemize}
+
+\resumesection{Research Experience}
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Human-Robot Interaction Researcher} \hfill \textbf{Jan 2023 – May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Published 2 first-author papers at IEEE RO-MAN (2024, 2025) on HRIStudio, a web-based Wizard-of-Oz platform enabling reproducible HRI studies across multiple robot platforms
+    \item Completed honors thesis evaluating HRIStudio via pilot study: achieved 100\% design fidelity and 96.7\% execution reliability vs.\ 66.7\% baseline; SUS usability score 76.7 vs.\ 59.2 for industry-standard Choregraphe
+    \item Architected modular plugin system enabling cross-platform robot control (NAO, Pepper, custom) through JSON-defined interfaces with WebSocket teleoperation and RESTful ROS integration
+    \item Designed comprehensive data logging system capturing interaction timelines and experimental conditions with microsecond precision for reproducibility analysis
+    \item Received James M. Pommersheim Research \& Innovation in Engineering Award for outstanding scholarly invention
+\end{itemize}
+
+\textbf{Computer Science Research Assistant – Chemical Engineering Dept.} \hfill \textbf{Aug 2023 – May 2025}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Built Python pipelines integrating atmospheric and water quality sensor streams for environmental monitoring research; bridged CS expertise with domain-specific research needs across disciplines
+\end{itemize}
+
+\resumesection{Professional Experience}
+
+\textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
+
+\textbf{Software Developer} \hfill \textbf{Oct 2020 – May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Architected and deployed full-stack real-time statistics platform serving 1,500+ concurrent users and 250k+ monthly visitors using Next.js, TypeScript, PostgreSQL, and Docker
+    \item Designed RESTful APIs for mobile applications and third-party integrations, processing 10M+ API requests monthly; handled \$100,000+ in payment processing
+    \item Built automated CI/CD pipelines with GitHub Actions and monitoring systems, maintaining 99.9\% uptime; led digital transformation replacing legacy paper-based systems with modern web applications
+    \item Optimized database queries reducing page load times by 60\% through intelligent caching and indexing strategies
+\end{itemize}
+
+\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
+
+\textbf{Teaching Assistant – Software Engineering \& Engineering Design} \hfill \textbf{Aug 2023 – May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Mentored 150+ students across software engineering, design patterns, and embedded systems; developed automated testing frameworks and grading tools improving learning outcomes
+\end{itemize}
+
+\resumesection{Selected Projects}
+
+\textbf{Real-time Racing Statistics Platform} \hfill \textbf{Next.js/TypeScript/PostgreSQL}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Production system serving 1,500+ concurrent users; implemented WebSocket real-time data streaming with auto-reconnection, state synchronization, and WCAG 2.1 AA accessibility compliance
+    \item Optimized database queries reducing page load times by 60\%; designed full mobile API and third-party integration layer
+\end{itemize}
+
+\textbf{Autonomous Vehicle Control – Chem-E-Car} \hfill \textbf{C++/Arduino}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Led 15-member interdisciplinary team as president; designed embedded FSM control system with real-time sensor fusion achieving \textpm10cm distance precision; 2nd place AIChE Mid-Atlantic (2024), competed at AIChE National
+\end{itemize}
+
+\textbf{Formula One Performance Prediction} \hfill \textbf{Python/ML}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Developed ensemble ML models (LightGBM, XGBoost, Random Forest) to predict F1 lap times; engineered features from weather, track characteristics, and historical data with cross-validation and hyperparameter optimization
+\end{itemize}
+
+\textbf{Computer System from Scratch – Nand2Tetris} \hfill \textbf{HDL/Assembly/Java}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Built complete computer from NAND gates through OS: designed logic gates, ALU, CPU, and RAM modules in HDL; wrote assembler, VM translator, and compiler for a high-level object-oriented language
+    \item Implemented functional OS with memory management, I/O handling, and graphics — demonstrating full-stack systems understanding from silicon to software
+\end{itemize}
+
+\resumesection{Leadership \& Activities}
+
+\textscbf{AIChE Chem-E-Car Competition Team} \hfill \textscbf{Bucknell University}
+
+\textbf{President, Electrical/Mechanical Team Lead} \hfill \textbf{Jan 2023 – May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Led 15-member interdisciplinary team; introduced agile development and version control practices to hardware development; mentored members in embedded systems and control theory
+    \item Managed technical roadmap across multiple competition cycles, coordinating electrical, mechanical, and software sub-teams toward competition deadlines
+\end{itemize}
+
+\textscbf{Bucknell Coffee Society} \hfill \textscbf{Bucknell University}
+
+\textbf{Co-Founder and Treasurer} \hfill \textbf{Oct 2023 – May 2026}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Co-established campus organization from scratch; managed \$5,000+ annual budget, coordinated events, and maintained vendor relationships
+\end{itemize}
+
+% Full Technical Skills
+\input{shared/sections/skills}
+
+\resumesection{Conferences \& Presentations}
+
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item \textbf{IEEE RO-MAN 2025} (Aug 2025, Eindhoven, The Netherlands) --- ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible Human-Robot Interaction Research''
+    \item \textbf{IEEE RO-MAN 2024} (Aug 2024, Pasadena, CA) --- ``HRIStudio: A Framework for Wizard-of-Oz Experiments in HRI Studies'' (Late Breaking Report)
+    \item \textbf{AIChE Annual Student Conference} (Oct 2024, San Diego, CA) --- Chem-E-Car National Competition; poster on safety-critical embedded systems design
+\end{itemize}
+
+\resumesection{Honors \& Awards}
+
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item James M. Pommersheim Research \& Innovation in Engineering Award --- Bucknell University College of Engineering (2026)
+    \item Dean's List (7 semesters): Fall 2022, Fall 2023, Spring 2024, Fall 2024, Spring 2025, Fall 2025, Spring 2026
+    \item AIChE Mid-Atlantic Chem-E-Car Competition --- 2nd Place (2024)
+\end{itemize}
+
+\end{document}
