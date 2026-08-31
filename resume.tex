@@ -1,72 +1,50 @@
 \documentclass{article}
-
-% Include common style
 \input{shared/style/common}
-
-% Include personal information (check build/ first, then root)
 \IfFileExists{build/personal_info.tex}{\input{build/personal_info}}{\input{personal_info}}
-
 \begin{document}
-
-% Header with contact information
 \input{shared/sections/header}
-
-% Education section
 \input{shared/sections/education}
 
-% Publications section
-\resumesection{Publications}
-
-\textbf{First Author, IEEE International Conference on Robot \& Human Interactive Communication (RO-MAN)}
+\resumesection{Publications \& Research}
+\textbf{Human-Robot Interaction Researcher, Bucknell University} \hfill \textbf{Jan 2023 – May 2026}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item O'Connor, S. \& Perrone, L.F. ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible HRI Research'' \textit{IEEE RO-MAN 2025}, Eindhoven, The Netherlands
-    \item O'Connor, S. \& Perrone, L.F. ``HRIStudio: A Framework for Wizard-of-Oz Experiments in HRI Studies'' \textit{IEEE RO-MAN 2024}, Pasadena, CA
-    \item O'Connor, S. ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible HRI Research'' \textit{Bachelor's Honors Thesis}, Bucknell University, 2026
+    \item Published two first-author papers at IEEE RO-MAN (2024, 2025) on HRIStudio, a web-based Wizard-of-Oz platform for reproducible HRI studies; completed an honors thesis evaluating the platform
+    \item Achieved 100\% design fidelity and 96.7\% execution reliability vs.\ 66.7\% baseline; SUS usability score 76.7 vs.\ 59.2 for Choregraphe
+    \item Architected modular robot plugins, WebSocket teleoperation, comprehensive experiment logging, and RESTful ROS integration for NAO, Pepper, and custom robots
 \end{itemize}
-
-\resumesection{Research Experience}
-
-\textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-
-\textbf{Human-Robot Interaction Researcher} \hfill \textbf{Jan 2023 – May 2026}
-\begin{itemize}[noitemsep,topsep=2pt]
-    \item Published 2 first-author papers at IEEE RO-MAN (2024, 2025) on HRIStudio, a web-based Wizard-of-Oz platform enabling reproducible HRI studies across multiple robot platforms
-    \item Completed honors thesis evaluating HRIStudio via pilot study: achieved 100\% design fidelity and 96.7 execution reliability vs.\ 66.7 baseline; SUS score 76.7 vs.\ 59.2 for Choregraphe
-    \item Architected modular plugin system with WebSocket teleoperation and RESTful API integrating ROS for NAO, Pepper, and custom robots
-\end{itemize}
+\textit{O'Connor, S. \& Perrone, L.F.}, ``A Web-Based Wizard-of-Oz Platform for Collaborative and Reproducible HRI Research,'' IEEE RO-MAN 2025.\\
+\textit{O'Connor, S. \& Perrone, L.F.}, ``HRIStudio: A Framework for Wizard-of-Oz Experiments in HRI Studies,'' IEEE RO-MAN 2024.
 
 \resumesection{Professional Experience}
+\textscbf{Hadlock technologies LLC} \hfill \textscbf{New York}
+\textbf{Founder \& Software Engineer} \hfill \textbf{2026 – Present}
+\begin{itemize}[noitemsep,topsep=2pt]
+    \item Founded Hadlock technologies LLC and built RaceTix, a digital ticketing platform integrating Shopify with signed, idempotent webhooks for automated ticket issuance and QR-code fulfillment
+    \item Developed real-time scanning and redemption workflows with event validation, partial redemption, role-based permissions, and append-only audit logging
+\end{itemize}
 
 \textscbf{Riverhead Raceway} \hfill \textscbf{Riverhead, NY}
-
-\textbf{Software Developer} \hfill \textbf{Oct 2020 – May 2026}
+\textbf{Software Developer} \hfill \textbf{Oct 2020 – Present}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Architected and deployed full-stack real-time statistics platform serving 1500+ concurrent users and 250k+ monthly visitors using Next.js, TypeScript, PostgreSQL, and Docker
-    \item Designed and implemented RESTful APIs for mobile applications and third-party integrations, processing 10M+ API requests monthly
-    \item Built automated CI/CD pipelines with GitHub Actions and monitoring systems, maintaining 99.9\% uptime across racing season
+    \item Architected and deployed RaceHub, a Next.js/TypeScript/PostgreSQL production platform serving 1,500+ concurrent users and 250k+ monthly visitors
+    \item Designed APIs processing 10M+ requests monthly and built Docker/GitHub Actions CI/CD, monitoring, and automated operations maintaining 99.9\% uptime during racing season
 \end{itemize}
 
 \textscbf{Bucknell University} \hfill \textscbf{Lewisburg, PA}
-
 \textbf{Teaching Assistant – Software Engineering \& Engineering Design} \hfill \textbf{Aug 2023 – May 2026}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Mentored 150+ students across software engineering, design patterns, and embedded systems (Arduino, microcontrollers)
-    \item Developed automated testing frameworks and grading tools, improving learning outcomes while streamlining assessment processes
+    \item Mentored 150+ students in software engineering, design patterns, and embedded systems; developed automated testing and grading tools
 \end{itemize}
 
-\resumesection{Selected Projects}
-
-\textbf{HRIStudio Research Platform} \hfill \textbf{Next.js/TypeScript/ROS}
+\resumesection{Selected Engineering Projects}
+\textbf{Computer System from Scratch – Nand2Tetris} \hfill \textbf{HDL/Assembly/Java}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Full-stack web application for managing HRI experiments with WebSocket robot control, role-based access, and comprehensive data logging for reproducibility
+    \item Built a complete computer from NAND gates through OS: designed ALU, CPU, and memory and implemented an assembler, VM translator, compiler, and operating system
 \end{itemize}
-
-\textbf{Autonomous Vehicle Control – Chem-E-Car Competition} \hfill \textbf{C++/Arduino}
+\textbf{Autonomous Vehicle Control – Chem-E-Car} \hfill \textbf{C++/Arduino}
 \begin{itemize}[noitemsep,topsep=2pt]
-    \item Led 15-member team; implemented embedded control system with real-time sensor fusion achieving \textpm10cm precision at AIChE National Competition (2nd place, 2024)
+    \item Led a 15-member interdisciplinary team; implemented finite-state embedded control and real-time sensor integration achieving \textpm10cm distance precision in AIChE competition
 \end{itemize}
 
-% Technical Skills
 \input{shared/sections/skills-resume}
-
 \end{document}

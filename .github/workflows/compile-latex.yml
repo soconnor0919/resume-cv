@@ -16,10 +16,8 @@ jobs:
     container: ghcr.io/xu-cheng/texlive-alpine:latest
     steps:
     - name: Install system dependencies
-      run: apk add --no-cache git gettext bash nodejs
-
+      run: apk add --no-cache git gettext bash nodejs poppler-utils
     - uses: actions/checkout@v4
-    
     - name: Create public info file
       env:
         PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
@@ -28,7 +26,6 @@ jobs:
         PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL || '' }}
       run: |
         cat > personal_info.tex << 'EOL'
-        % Public version of personal information
         \newcommand{\personalName}{$PERSONAL_NAME}
         \newcommand{\personalEmail}{$PERSONAL_EMAIL}
         \newcommand{\personalPhone}{~}
@@ -42,31 +39,16 @@ jobs:
         EOL
         envsubst < personal_info.tex > personal_info.tex.tmp
         mv personal_info.tex.tmp personal_info.tex
-    
-    - name: Cache TeX Live
-      uses: actions/cache@v4
-      with:
-        path: |
-          /tmp/texlive
-          ~/.texlive*
-        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex', 'subfiles/**/*.tex') }}
-        restore-keys: |
-          texlive-${{ runner.os }}-
-    
-    - name: Create TeX Live directory
-      run: mkdir -p /tmp/texlive
-
     - name: Compile LaTeX
       run: |
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
         latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
-    
-    - name: List generated PDFs
-      run: ls -la *.pdf
-        
-    # --- GITHUB RELEASES (Run only on GitHub) ---
-    - name: Upload Public PDFs as Release (GitHub)
-      if: github.server_url == 'https://github.com'
+    - name: Enforce one-page resume
+      run: |
+        pages=$(pdfinfo resume.pdf | awk '/^Pages:/ {print $2}')
+        echo "Resume pages: $pages"
+        test "$pages" -eq 1
+    - name: Upload Public PDFs as Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "resume.pdf,cv.pdf"
@@ -74,187 +56,8 @@ jobs:
         name: Latest PDFs
         body: |
           Latest compiled resume and CV (public versions)
-          
           Built from commit ${{ github.sha }}
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
         removeArtifacts: true
         replacesArtifacts: true
-
-    - name: Create Numbered Release (GitHub)
-      if: github.server_url == 'https://github.com'
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "resume.pdf,cv.pdf"
-        tag: release-${{ github.run_number }}
-        name: Release ${{ github.run_number }}
-        body: |
-          Automated release #${{ github.run_number }}
-          
-          Built from commit ${{ github.sha }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        draft: false
-        prerelease: false
-
-    # --- GITEA RELEASES (Run only on Gitea) ---
-    - name: Upload Public PDFs as Release (Gitea)
-      if: github.server_url != 'https://github.com'
-      uses: akkuman/gitea-release-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        files: |
-          resume.pdf
-          cv.pdf
-        name: Latest PDFs
-        tag_name: latest
-        prerelease: false
-        draft: false
-
-    - name: Create Numbered Release (Gitea)
-      if: github.server_url != 'https://github.com'
-      uses: akkuman/gitea-release-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        files: |
-          resume.pdf
-          cv.pdf
-        name: Release ${{ github.run_number }}
-        tag_name: release-${{ github.run_number }}
-        prerelease: false
-        draft: false
-
-  build-private-github:
-    runs-on: ubuntu-latest
-    container: ghcr.io/xu-cheng/texlive-alpine:latest
-    if: github.actor == github.repository_owner && github.server_url == 'https://github.com'
-    steps:
-    - name: Install system dependencies
-      run: apk add --no-cache git gettext bash nodejs
-
-    - uses: actions/checkout@v4
-    
-    - name: Create private info file
-      env:
-        PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
-        PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL || '' }}
-        PERSONAL_WEBSITE: ${{ secrets.PERSONAL_WEBSITE || '' }}
-        PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL || '' }}
-        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE || '' }}
-        PERSONAL_HOME_ADDRESS_LINE1: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE1 || '' }}
-        PERSONAL_HOME_ADDRESS_LINE2: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE2 || '' }}
-        PERSONAL_SCHOOL_ADDRESS_LINE1: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE1 || '' }}
-        PERSONAL_SCHOOL_ADDRESS_LINE2: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE2 || '' }}
-        PERSONAL_SCHOOL_ADDRESS_LINE3: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE3 || '' }}
-      run: |
-        cat > personal_info.tex << 'EOL'
-        % Private version of personal information
-        \newcommand{\personalName}{${PERSONAL_NAME}}
-        \newcommand{\personalEmail}{${PERSONAL_EMAIL}}
-        \newcommand{\personalPhone}{${PERSONAL_PHONE}}
-        \newcommand{\personalWebsite}{${PERSONAL_WEBSITE}}
-        \newcommand{\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
-        \newcommand{\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
-        \newcommand{\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
-        \newcommand{\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
-        \newcommand{\personalSchoolAddressLineTwo}{${PERSONAL_SCHOOL_ADDRESS_LINE2}}
-        \newcommand{\personalSchoolAddressLineThree}{${PERSONAL_SCHOOL_ADDRESS_LINE3}}
-        EOL
-        envsubst < personal_info.tex > personal_info.tex.tmp
-        mv personal_info.tex.tmp personal_info.tex
-    
-    - name: Cache TeX Live
-      uses: actions/cache@v4
-      with:
-        path: |
-          /tmp/texlive
-          ~/.texlive*
-        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex', 'subfiles/**/*.tex') }}
-        restore-keys: |
-          texlive-${{ runner.os }}-
-    
-    - name: Create TeX Live directory
-      run: mkdir -p /tmp/texlive
-
-    - name: Compile LaTeX
-      run: |
-        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
-        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
-    
-    - name: List generated PDFs
-      run: ls -la *.pdf
-        
-    - name: Upload Private PDFs
-      uses: actions/upload-artifact@v4
-      with:
-        name: private-documents
-        path: |
-          resume.pdf
-          cv.pdf
-
-  build-private-gitea:
-    runs-on: ubuntu-latest
-    container: ghcr.io/xu-cheng/texlive-alpine:latest
-    if: github.actor == github.repository_owner && github.server_url != 'https://github.com'
-    steps:
-    - name: Install system dependencies
-      run: apk add --no-cache git gettext bash nodejs
-
-    - uses: actions/checkout@v4
-    
-    - name: Create private info file
-      env:
-        PERSONAL_NAME: ${{ secrets.PERSONAL_NAME || github.repository_owner }}
-        PERSONAL_EMAIL: ${{ secrets.PERSONAL_EMAIL || '' }}
-        PERSONAL_WEBSITE: ${{ secrets.PERSONAL_WEBSITE || '' }}
-        PERSONAL_SCHOOL_EMAIL: ${{ secrets.PERSONAL_SCHOOL_EMAIL || '' }}
-        PERSONAL_PHONE: ${{ secrets.PERSONAL_PHONE || '' }}
-        PERSONAL_HOME_ADDRESS_LINE1: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE1 || '' }}
-        PERSONAL_HOME_ADDRESS_LINE2: ${{ secrets.PERSONAL_HOME_ADDRESS_LINE2 || '' }}
-        PERSONAL_SCHOOL_ADDRESS_LINE1: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE1 || '' }}
-        PERSONAL_SCHOOL_ADDRESS_LINE2: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE2 || '' }}
-        PERSONAL_SCHOOL_ADDRESS_LINE3: ${{ secrets.PERSONAL_SCHOOL_ADDRESS_LINE3 || '' }}
-      run: |
-        cat > personal_info.tex << 'EOL'
-        % Private version of personal information
-        \newcommand{\personalName}{${PERSONAL_NAME}}
-        \newcommand{\personalEmail}{${PERSONAL_EMAIL}}
-        \newcommand{\personalPhone}{${PERSONAL_PHONE}}
-        \newcommand{\personalWebsite}{${PERSONAL_WEBSITE}}
-        \newcommand{\personalSchoolEmail}{${PERSONAL_SCHOOL_EMAIL}}
-        \newcommand{\personalHomeAddressLineOne}{${PERSONAL_HOME_ADDRESS_LINE1}}
-        \newcommand{\personalHomeAddressLineTwo}{${PERSONAL_HOME_ADDRESS_LINE2}}
-        \newcommand{\personalSchoolAddressLineOne}{${PERSONAL_SCHOOL_ADDRESS_LINE1}}
-        \newcommand{\personalSchoolAddressLineTwo}{${PERSONAL_SCHOOL_ADDRESS_LINE2}}
-        \newcommand{\personalSchoolAddressLineThree}{${PERSONAL_SCHOOL_ADDRESS_LINE3}}
-        EOL
-        envsubst < personal_info.tex > personal_info.tex.tmp
-        mv personal_info.tex.tmp personal_info.tex
-    
-    - name: Cache TeX Live
-      uses: actions/cache@v4
-      with:
-        path: |
-          /tmp/texlive
-          ~/.texlive*
-        key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex', 'subfiles/**/*.tex') }}
-        restore-keys: |
-          texlive-${{ runner.os }}-
-    
-    - name: Create TeX Live directory
-      run: mkdir -p /tmp/texlive
-
-    - name: Compile LaTeX
-      run: |
-        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
-        latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
-    
-    - name: List generated PDFs
-      run: ls -la *.pdf
-        
-    - name: Upload Private PDFs
-      uses: actions/upload-artifact@v3
-      with:
-        name: private-documents
-        path: |
-          resume.pdf
-          cv.pdf
