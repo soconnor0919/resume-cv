@@ -48,7 +48,7 @@ jobs:
         pages=$(pdfinfo resume.pdf | awk '/^Pages:/ {print $2}')
         echo "Resume pages: $pages"
         test "$pages" -eq 1
-    - name: Upload Public PDFs as Release
+    - name: Update latest release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "resume.pdf,cv.pdf"
@@ -61,3 +61,16 @@ jobs:
         allowUpdates: true
         removeArtifacts: true
         replacesArtifacts: true
+    - name: Create numbered release
+      if: github.event_name == 'push'
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "resume.pdf,cv.pdf"
+        tag: release-${{ github.run_number }}
+        name: Release ${{ github.run_number }}
+        body: |
+          Automated release #${{ github.run_number }}
+          Built from commit ${{ github.sha }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        draft: false
+        prerelease: false
